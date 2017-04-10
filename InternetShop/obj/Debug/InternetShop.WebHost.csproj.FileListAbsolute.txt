@@ -86,3 +86,7 @@ C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\LogicLayer.dll
 C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\LogicLayer.pdb
 C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\Ninject.dll
 C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\Ninject.xml
+C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\Ninject.Extensions.Factory.dll
+C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\Castle.Core.dll
+C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\Ninject.Extensions.Factory.xml
+C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\Castle.Core.xml
