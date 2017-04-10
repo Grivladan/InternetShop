@@ -2,3 +2,5 @@ C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\bin\Debug\LogicLayer.dll
 C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\bin\Debug\LogicLayer.pdb
 C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\obj\Debug\LogicLayer.dll
 C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\obj\Debug\LogicLayer.pdb
+C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\bin\Debug\Ninject.dll
+C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\bin\Debug\Ninject.xml

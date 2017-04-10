@@ -12,3 +12,9 @@ C:\Users\Vladyslav\Desktop\InternetShop\DataAccess\bin\Debug\Microsoft.AspNet.Id
 C:\Users\Vladyslav\Desktop\InternetShop\DataAccess\obj\Debug\InternetShop.DataAccess.csprojResolveAssemblyReference.cache
 C:\Users\Vladyslav\Desktop\InternetShop\DataAccess\obj\Debug\DataAccess.dll
 C:\Users\Vladyslav\Desktop\InternetShop\DataAccess\obj\Debug\DataAccess.pdb
+C:\Users\Vladyslav\Desktop\InternetShop\DataAccess\bin\Debug\Castle.Core.dll
+C:\Users\Vladyslav\Desktop\InternetShop\DataAccess\bin\Debug\Ninject.dll
+C:\Users\Vladyslav\Desktop\InternetShop\DataAccess\bin\Debug\Ninject.Extensions.Factory.dll
+C:\Users\Vladyslav\Desktop\InternetShop\DataAccess\bin\Debug\Castle.Core.xml
+C:\Users\Vladyslav\Desktop\InternetShop\DataAccess\bin\Debug\Ninject.xml
+C:\Users\Vladyslav\Desktop\InternetShop\DataAccess\bin\Debug\Ninject.Extensions.Factory.xml

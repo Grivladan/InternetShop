@@ -3,3 +3,5 @@ C:\Users\Vladyslav\Desktop\InternetShop\InternetShop.Tests\bin\Debug\InternetSho
 C:\Users\Vladyslav\Desktop\InternetShop\InternetShop.Tests\obj\Debug\InternetShop.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Vladyslav\Desktop\InternetShop\InternetShop.Tests\obj\Debug\InternetShop.Tests.dll
 C:\Users\Vladyslav\Desktop\InternetShop\InternetShop.Tests\obj\Debug\InternetShop.Tests.pdb
+C:\Users\Vladyslav\Desktop\InternetShop\InternetShop.Tests\bin\Debug\Ninject.dll
+C:\Users\Vladyslav\Desktop\InternetShop\InternetShop.Tests\bin\Debug\Ninject.xml

@@ -84,3 +84,5 @@ C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\obj\Debug\InternetShop.dll
 C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\obj\Debug\InternetShop.pdb
 C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\LogicLayer.dll
 C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\LogicLayer.pdb
+C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\Ninject.dll
+C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\Ninject.xml
