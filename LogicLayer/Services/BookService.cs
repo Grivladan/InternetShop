@@ -16,7 +16,9 @@ namespace LogicLayer.Services
 
         public Book Create(Book book)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Books.Create(book);
+            _unitOfWork.Save();
+            return null;
         }
 
         public void Dispose()
