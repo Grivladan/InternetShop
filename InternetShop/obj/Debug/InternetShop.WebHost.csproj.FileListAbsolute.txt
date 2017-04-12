@@ -90,3 +90,8 @@ C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\Ninject.Extensions.Fact
 C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\Castle.Core.dll
 C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\Ninject.Extensions.Factory.xml
 C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\Castle.Core.xml
+C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\Ninject.Web.Common.dll
+C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\Ninject.Web.Mvc.dll
+C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\WebActivatorEx.dll
+C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\Ninject.Web.Common.xml
+C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\Ninject.Web.Mvc.xml

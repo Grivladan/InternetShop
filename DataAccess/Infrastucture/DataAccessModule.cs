@@ -17,7 +17,6 @@ namespace DataAccess.Infrastucture
             Bind<IUserStore<ApplicationUser>>().To<UserStore<ApplicationUser>>();
             Bind<UserManager<ApplicationUser>>().ToSelf();
             Bind(typeof(IRepository<>)).To(typeof(Repository<>));
-            Bind<IUnitOfWork>().To<UnitOfWork>();
         }
     }
 }
