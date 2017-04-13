@@ -72,6 +72,8 @@
     <Compile Include="EF\ApplicationDbContext.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\Book.cs" />
+    <Compile Include="Entities\Detail.cs" />
+    <Compile Include="Entities\Order.cs" />
     <Compile Include="Infrastucture\DataAccessModule.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Interfaces\IRepository.cs" />

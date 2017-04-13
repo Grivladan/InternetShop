@@ -14,11 +14,10 @@ namespace LogicLayer.Services
             _unitOfWork = unitOfWork;
         }
 
-        public Book Create(Book book)
+        public void Create(Book book)
         {
             _unitOfWork.Books.Create(book);
             _unitOfWork.Save();
-            return null;
         }
 
         public void Dispose()

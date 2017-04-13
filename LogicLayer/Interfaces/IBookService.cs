@@ -7,7 +7,7 @@ namespace LogicLayer.Interfaces
     {
         IEnumerable<Book> GetAll();
         Book GetById(int id);
-        Book Create(Book book);
+        void Create(Book book);
         void Update(int id, Book book);
         void Remove(int id);
 
