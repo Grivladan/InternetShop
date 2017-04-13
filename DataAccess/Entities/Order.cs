@@ -20,7 +20,7 @@ namespace DataAccess.Entities
         public decimal Total { get; set; }
 
         public virtual ApplicationUser Owner { get; set; }
-        public int OwnerId { get; set; }
+        public string OwnerId { get; set; }
         public virtual ICollection<Detail> Details { get; set; }
     }
 }

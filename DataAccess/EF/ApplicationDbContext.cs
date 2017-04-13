@@ -11,6 +11,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     }
 
     public DbSet<Book> Books { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<Detail> Details { get; set; } 
 
     public static ApplicationDbContext Create()
     {
