@@ -5,7 +5,7 @@ namespace DataAccess.Entities
 {
     public class Cart : IEntity
     {
-        public int SessionId { get; set; }
+        public string SessionId { get; set; }
         public int Id { get; set; }
         public int Count { get; set; }
         public DateTime Date { get; set; }

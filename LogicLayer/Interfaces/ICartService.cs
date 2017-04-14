@@ -1,12 +1,18 @@
-﻿using System;
+﻿using DataAccess.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LogicLayer.Interfaces
 {
-    interface ICartService
+    public interface ICartService
     {
+        IEnumerable<Cart> GetAll();
+        Cart GetById(int id);
+        void Create(Cart cart);
+        void Update(int id, Cart cart);
+        void Remove(int id);
+        void RemoveAll();
+        int GetTotal();
+
+        void Dispose();
     }
 }
