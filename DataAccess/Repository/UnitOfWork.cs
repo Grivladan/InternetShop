@@ -22,12 +22,21 @@ namespace DataAccess.Repository
         }
 
         private IRepository<Book> _bookRepository;
+        private IRepository<Cart> _cartRepository;
 
         public IRepository<Book> Books
         {
             get
             {
                 return _bookRepository ?? (_bookRepository = _repositoryFactory.CreateRepository<Book>(_context));
+            }
+        }
+
+        public IRepository<Cart> Carts
+        {
+            get
+            {
+                return _cartRepository ?? (_cartRepository = _repositoryFactory.CreateRepository<Cart>(_context));
             }
         }
 
