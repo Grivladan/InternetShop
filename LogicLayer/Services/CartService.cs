@@ -45,6 +45,26 @@ namespace LogicLayer.Services
             }
         }
 
+        public int RemoveFromCart(int id)
+        {
+            var cart = _unitOfWork.Carts.Query.Single(x => x.SessionId == sessionId && x.Id == id);
+            int cartItemCount = 0;
+            if (cart != null)
+            {
+                if(cart.Count > 1)
+                {
+                    cart.Count--;
+                    cartItemCount = cart.Count;
+                    Update(id, cart);
+                }
+                else
+                {
+                    Remove(id);
+                }
+            }
+            return cartItemCount;
+        }
+
         public void Dispose()
         {
             throw new NotImplementedException();
@@ -62,9 +82,11 @@ namespace LogicLayer.Services
             return cart;
         }
 
-        public int GetTotal()
+        public decimal GetSum()
         {
-            throw new NotImplementedException();
+            var carts = _unitOfWork.Carts.Query.Where(x => x.SessionId == sessionId);
+            decimal? sum = carts.Select(x => x.Count * x.Book.Price).Sum();
+            return sum ?? decimal.Zero;
         }
 
         public void Remove(int id)
