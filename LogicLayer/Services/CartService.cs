@@ -25,7 +25,7 @@ namespace LogicLayer.Services
             _unitOfWork.Save(); 
         }
 
-        public void AddToCart(Book book)
+        public void AddToCart(Product book)
         {
             var cart = _unitOfWork.Carts.Query.SingleOrDefault( x => x.SessionId == sessionId && x.Book.Id == book.Id);
             if(cart == null)
@@ -121,6 +121,16 @@ namespace LogicLayer.Services
                 throw new InvalidOperationException();
             _unitOfWork.Carts.Update(cart);
             _unitOfWork.Save();
+        }
+
+        public void RemoveAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetTotal()
+        {
+            throw new NotImplementedException();
         }
     }
 }

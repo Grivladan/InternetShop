@@ -10,7 +10,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
     }
 
-    public DbSet<Book> Books { get; set; }
+    public DbSet<Product> Books { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<Detail> Details { get; set; }
     public DbSet<Cart> Carts { get; set; }  

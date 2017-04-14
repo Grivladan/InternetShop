@@ -21,14 +21,14 @@ namespace DataAccess.Repository
             _manager = manager;
         }
 
-        private IRepository<Book> _bookRepository;
+        private IRepository<Product> _bookRepository;
         private IRepository<Cart> _cartRepository;
 
-        public IRepository<Book> Books
+        public IRepository<Product> Books
         {
             get
             {
-                return _bookRepository ?? (_bookRepository = _repositoryFactory.CreateRepository<Book>(_context));
+                return _bookRepository ?? (_bookRepository = _repositoryFactory.CreateRepository<Product>(_context));
             }
         }
 

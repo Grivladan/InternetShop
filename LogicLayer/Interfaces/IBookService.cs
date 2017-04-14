@@ -5,10 +5,10 @@ namespace LogicLayer.Interfaces
 {
     public interface IBookService
     {
-        IEnumerable<Book> GetAll();
-        Book GetById(int id);
-        void Create(Book book);
-        void Update(int id, Book book);
+        IEnumerable<Product> GetAll();
+        Product GetById(int id);
+        void Create(Product book);
+        void Update(int id, Product book);
         void Remove(int id);
 
         void Dispose();

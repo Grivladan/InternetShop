@@ -22,7 +22,7 @@ namespace InternetShop.Controllers
             return View(books);
         }
 
-        public ActionResult CreateBook(Book book)
+        public ActionResult CreateBook(Product book)
         {
             _bookService.Create(book);
             return View(book);

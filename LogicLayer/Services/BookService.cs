@@ -14,7 +14,7 @@ namespace LogicLayer.Services
             _unitOfWork = unitOfWork;
         }
 
-        public void Create(Book book)
+        public void Create(Product book)
         {
             _unitOfWork.Books.Create(book);
             _unitOfWork.Save();
@@ -25,13 +25,13 @@ namespace LogicLayer.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Book> GetAll()
+        public IEnumerable<Product> GetAll()
         {
             var books = _unitOfWork.Books.GetAll();
             return books;
         }
 
-        public Book GetById(int id)
+        public Product GetById(int id)
         {
             throw new NotImplementedException();
         }
@@ -41,7 +41,7 @@ namespace LogicLayer.Services
             throw new NotImplementedException();
         }
 
-        public void Update(int id, Book book)
+        public void Update(int id, Product book)
         {
             throw new NotImplementedException();
         }
