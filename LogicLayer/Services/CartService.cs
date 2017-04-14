@@ -52,12 +52,14 @@ namespace LogicLayer.Services
 
         public IEnumerable<Cart> GetAll()
         {
-            throw new NotImplementedException();
+            var carts = _unitOfWork.Carts.GetAll();
+            return carts;
         }
 
         public Cart GetById(int id)
         {
-            throw new NotImplementedException();
+            var cart = _unitOfWork.Carts.GetById(id);
+            return cart;
         }
 
         public int GetTotal()
@@ -77,7 +79,11 @@ namespace LogicLayer.Services
 
         public void Update(int id, Cart cart)
         {
-            throw new NotImplementedException();
+            var cartItem = _unitOfWork.Carts.GetById(id);
+            if (cartItem == null)
+                throw new InvalidOperationException();
+            _unitOfWork.Carts.Update(cart);
+            _unitOfWork.Save();
         }
     }
 }
