@@ -91,12 +91,27 @@ namespace LogicLayer.Services
 
         public void Remove(int id)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Carts.Delete(id);
+            _unitOfWork.Save();
         }
 
-        public void RemoveAll()
+        public IEnumerable<Cart> GetAllCartItems()
         {
-            throw new NotImplementedException();
+            var carts = _unitOfWork.Carts.Query.Where(x => x.SessionId == sessionId);
+            return carts;
+        }
+
+        public void RemoveAllCartItems()
+        {
+            var carts = GetAllCartItems();
+            foreach (var cart in carts)
+                Remove(cart.Id);
+        }
+
+        public int GetCartCount()
+        {
+            var carts = GetAllCartItems();
+            return carts.Count();
         }
 
         public void Update(int id, Cart cart)
