@@ -10,5 +10,10 @@ namespace DataAccess.Entities
         public int Count { get; set; }
         public DateTime Date { get; set; }
         public virtual Product Book { get; set; }
+
+        public Cart()
+        {
+            Date = DateTime.Now;
+        }
     }
 }

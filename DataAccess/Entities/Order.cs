@@ -22,5 +22,11 @@ namespace DataAccess.Entities
         public virtual ApplicationUser Owner { get; set; }
         public string OwnerId { get; set; }
         public virtual ICollection<Detail> Details { get; set; }
+
+        public Order()
+        {
+            Date = DateTime.Now;
+            Details =new List<Detail>();
+        }
     }
 }

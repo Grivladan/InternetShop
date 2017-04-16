@@ -20,5 +20,10 @@ namespace InternetShop.DataAccess.Entities
         }
 
         public virtual ICollection<Order> Orders { get; set; }
+
+        public ApplicationUser()
+        {
+            Orders = new List<Order>();
+        }
     }
 }
