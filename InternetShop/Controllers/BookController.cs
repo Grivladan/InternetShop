@@ -10,8 +10,8 @@ namespace InternetShop.Controllers
 {
     public class BookController : Controller
     {
-        private readonly IBookService _bookService;
-        public BookController(IBookService bookService)
+        private readonly IProductService _bookService;
+        public BookController(IProductService bookService)
         {
             _bookService = bookService;
         }

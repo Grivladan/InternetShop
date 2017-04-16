@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace LogicLayer.Interfaces
 {
-    public interface IBookService
+    public interface IProductService
     {
         IEnumerable<Product> GetAll();
         Product GetById(int id);
-        void Create(Product book);
-        void Update(int id, Product book);
+        void Create(Product product);
+        void Update(int id, Product product);
         void Remove(int id);
 
         void Dispose();

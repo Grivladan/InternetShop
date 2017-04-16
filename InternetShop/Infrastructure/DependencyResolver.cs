@@ -8,7 +8,7 @@ namespace InternetShop.Infrastructure
     {
         public override void Load()
         {
-            Bind<IBookService>().To<BookService>();
+            Bind<IProductService>().To<ProductService>();
         }
     }
 }

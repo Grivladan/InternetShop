@@ -7,7 +7,7 @@ namespace DataAccess.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IRepository<Product> Books { get; }
+        IRepository<Product> Products { get; }
         IRepository<Cart> Carts { get; }
 
         void Save();

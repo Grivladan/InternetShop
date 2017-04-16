@@ -24,7 +24,7 @@ namespace DataAccess.Repository
         private IRepository<Product> _bookRepository;
         private IRepository<Cart> _cartRepository;
 
-        public IRepository<Product> Books
+        public IRepository<Product> Products
         {
             get
             {
