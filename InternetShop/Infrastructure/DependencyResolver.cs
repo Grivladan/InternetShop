@@ -9,6 +9,7 @@ namespace InternetShop.Infrastructure
         public override void Load()
         {
             Bind<IProductService>().To<ProductService>();
+            Bind<ICategoryService>().To<CategoryService>();
         }
     }
 }

@@ -43,5 +43,11 @@ namespace LogicLayer.Services
             _unitOfWork.Categories.Update(categoryItem);
             _unitOfWork.Save();
         }
+
+        public void Delete(int id)
+        {
+            _unitOfWork.Categories.Delete(id);
+            _unitOfWork.Save();
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace LogicLayer.Interfaces
         Category GetCategoryById(int id);
         void Create(Category category);
         void Update(int id, Category category);
+        void Delete(int id);
         IEnumerable<Category> GetAllCategories();
 
         void Dispose();
