@@ -23,6 +23,7 @@ namespace DataAccess.Repository
 
         private IRepository<Product> _bookRepository;
         private IRepository<Cart> _cartRepository;
+        private IRepository<Category> _categoryRepository;
 
         public IRepository<Product> Products
         {
@@ -37,6 +38,14 @@ namespace DataAccess.Repository
             get
             {
                 return _cartRepository ?? (_cartRepository = _repositoryFactory.CreateRepository<Cart>(_context));
+            }
+        }
+
+        public IRepository<Category> Categories
+        {
+            get
+            {
+                return _categoryRepository ?? (_categoryRepository = _repositoryFactory.CreateRepository<Category>(_context));
             }
         }
 
