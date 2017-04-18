@@ -28,13 +28,13 @@ namespace InternetShop.Controllers
             return View(category);
         }
 
-        public ActionResult Create()
+        public ActionResult CreateCategory()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(Category category)
+        public ActionResult CreateCategory(Category category)
         {
             if (ModelState.IsValid)
             {
