@@ -23,7 +23,7 @@ namespace LogicLayer.Services
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _unitOfWork.Dispose();
         }
 
         public IEnumerable<Product> GetAll()

@@ -11,9 +11,11 @@ namespace InternetShop.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
-        public ProductController(IProductService productService)
+        private readonly ICategoryService _categoryService;
+        public ProductController(IProductService productService, ICategoryService categoryService)
         {
             _productService = productService;
+            _categoryService = categoryService;
         }
 
         public ActionResult GetProducts()
@@ -22,9 +24,20 @@ namespace InternetShop.Controllers
             return View(products);
         }
 
+        public ActionResult CreateProduct()
+        {
+            ViewBag.Categories = _categoryService.GetAllCategories();
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult CreateProduct(Product product)
         {
-            _productService.Create(product);
+            if (ModelState.IsValid)
+            {
+                _productService.Create(product);
+            }
+            ViewBag.Categories = _categoryService.GetAllCategories();
             return View(product);
         }
     }
