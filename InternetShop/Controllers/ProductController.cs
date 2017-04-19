@@ -33,10 +33,7 @@ namespace InternetShop.Controllers
         [HttpPost]
         public ActionResult CreateProduct(Product product)
         {
-            if (ModelState.IsValid)
-            {
-                _productService.Create(product);
-            }
+            _productService.Create(product);
             ViewBag.Categories = _categoryService.GetAllCategories();
             return View(product);
         }

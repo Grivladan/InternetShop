@@ -17,6 +17,8 @@ namespace LogicLayer.Services
 
         public void Create(Product product)
         {
+            if (product.Category == null)
+                product.Category = _unitOfWork.Categories.GetById(product.CategoryId??0);
             _unitOfWork.Products.Create(product);
             _unitOfWork.Save();
         }
