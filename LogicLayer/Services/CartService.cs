@@ -25,14 +25,14 @@ namespace LogicLayer.Services
             _unitOfWork.Save(); 
         }
 
-        public void AddToCart(Product book)
+        public void AddToCart(Product product)
         {
-            var cart = _unitOfWork.Carts.Query.SingleOrDefault( x => x.SessionId == sessionId && x.Book.Id == book.Id);
+            var cart = _unitOfWork.Carts.Query.SingleOrDefault( x => x.SessionId == sessionId && x.Product.Id == product.Id);
             if(cart == null)
             {
                 cart = new Cart
                 {
-                    Book = book,
+                    Product = product,
                     Count = 1,
                     Date = DateTime.Now
                 };
@@ -67,7 +67,7 @@ namespace LogicLayer.Services
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _unitOfWork.Dispose();
         }
 
         public IEnumerable<Cart> GetAll()
@@ -85,7 +85,7 @@ namespace LogicLayer.Services
         public decimal GetSum()
         {
             var carts = _unitOfWork.Carts.Query.Where(x => x.SessionId == sessionId);
-            decimal? sum = carts.Select(x => x.Count * x.Book.Price).Sum();
+            decimal? sum = carts.Select(x => x.Count * x.Product.Price).Sum();
             return sum ?? decimal.Zero;
         }
 

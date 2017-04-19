@@ -9,8 +9,8 @@ namespace DataAccess.Entities
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }
 
-        public virtual Product Book { get; set; }
-        public int BookId { get; set; }
+        public virtual Product Product { get; set; }
+        public int ProductId { get; set; }
         public virtual Order Order { get; set; }
     }
 }
