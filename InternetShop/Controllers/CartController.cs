@@ -14,5 +14,17 @@ namespace InternetShop.Controllers
         {
             _cartService = cartService;
         }
+
+        public ActionResult AddToCart(int id)
+        {
+            _cartService.AddToCart(id);
+            return RedirectToAction("Index","Home");
+        }
+
+        public ActionResult GetCartItems()
+        {
+            var cartItems = _cartService.GetAllCartItems();
+            return View(cartItems);
+        }
     }
 }

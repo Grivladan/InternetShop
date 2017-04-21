@@ -8,7 +8,7 @@ namespace LogicLayer.Interfaces
         IEnumerable<Cart> GetAll();
         Cart GetById(int id);
         void Create(Cart cart);
-        void AddToCart(Product product);
+        void AddToCart(int id);
         IEnumerable<Cart> GetAllCartItems();
         int GetCartCount();
         void Update(int id, Cart cart);

@@ -11,12 +11,16 @@ namespace LogicLayer.Services
     public class CartService : ICartService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly string sessionId;
+        private static readonly string sessionId;
+
+        static CartService()
+        {
+            sessionId = HttpContext.Current.Session.SessionID;
+        }
 
         public CartService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            sessionId = HttpContext.Current.Session.SessionID;
         }
 
         public void Create(Cart cart)
@@ -25,13 +29,15 @@ namespace LogicLayer.Services
             _unitOfWork.Save(); 
         }
 
-        public void AddToCart(Product product)
+        public void AddToCart(int id)
         {
+            var product = _unitOfWork.Products.GetById(id);
             var cart = _unitOfWork.Carts.Query.SingleOrDefault( x => x.SessionId == sessionId && x.Product.Id == product.Id);
             if(cart == null)
             {
                 cart = new Cart
                 {
+                    SessionId = sessionId,
                     Product = product,
                     Count = 1,
                     Date = DateTime.Now
@@ -90,7 +96,7 @@ namespace LogicLayer.Services
 
         public IEnumerable<Cart> GetAllCartItems()
         {
-            var carts = _unitOfWork.Carts.Query.Where(x => x.SessionId == sessionId);
+            var carts = _unitOfWork.Carts.Query.Where(x => x.SessionId == sessionId).ToList();
             return carts;
         }
 
