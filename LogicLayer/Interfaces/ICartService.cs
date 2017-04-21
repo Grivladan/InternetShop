@@ -8,10 +8,14 @@ namespace LogicLayer.Interfaces
         IEnumerable<Cart> GetAll();
         Cart GetById(int id);
         void Create(Cart cart);
+        void AddToCart(Product product);
+        IEnumerable<Cart> GetAllCartItems();
+        int GetCartCount();
         void Update(int id, Cart cart);
         void Remove(int id);
+        int RemoveFromCart(int id);
         void RemoveAll();
-        int GetTotal();
+        decimal GetTotal();
 
         void Dispose();
     }
