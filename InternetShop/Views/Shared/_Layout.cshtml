@@ -20,8 +20,11 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
+                <a href="@Url.Action("GetCartItems", "Cart")" class="btn btn-warning">
+                    Cart
+                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                </a>
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Cart", "GetCartItems", "Cart")</li>
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
