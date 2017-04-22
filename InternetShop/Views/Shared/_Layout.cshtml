@@ -32,7 +32,7 @@
                 @Html.Partial("_LoginPartial")
             </div>
             <form class="navbar-form navbar-left">
-                <button class="btn btn-default" type="button">
+                <button class="btn btn-default categories" type="button">
                     <i class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></i>
                 </button>
                 <div class="input-group">
@@ -59,3 +59,17 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+<style>
+    #categories{
+        background-color : red;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $(".categories").hover(function () {
+            
+        });
+    });
+</script>

@@ -84,5 +84,17 @@ namespace LogicLayer.Services
             var products = _unitOfWork.Products.Query.OrderBy( x => x.Date);
             return products;
         }
+
+        public IEnumerable<Product> Search(string searchString)
+        {
+            var products = _unitOfWork.Products.GetAll();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(x => x.Name.Contains(searchString)).ToList();
+            }
+
+            return products;
+        }
     }
 }

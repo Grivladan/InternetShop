@@ -10,6 +10,7 @@ namespace LogicLayer.Interfaces
         void Create(Product product);
         void Update(int id, Product product);
         void Remove(int id);
+        IEnumerable<Product> Search(string searchString);
 
         void Dispose();
     }
