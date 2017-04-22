@@ -37,5 +37,18 @@ namespace InternetShop.Controllers
             ViewBag.Categories = _categoryService.GetAllCategories();
             return View(product);
         }
+
+        public ActionResult Search(string searchString)
+        {
+            var products = _productService.Search(searchString);
+            return View("GetProducts", products);
+        }
+
+        public ActionResult AutocompleteSearch(string searchString)
+        {
+            var products = _productService.Search(searchString);
+
+            return Json(products, JsonRequestBehavior.AllowGet);
+        }
     }
 }
