@@ -61,27 +61,15 @@ namespace LogicLayer.Services
             return products;
         }
 
-        public IEnumerable<Product> OrderByName()
+        public IEnumerable<Product> Sort(string sortOrder)
         {
-            var products = _unitOfWork.Products.Query.OrderBy(x => x.Name);
-            return products;
-        }
-
-        public IEnumerable<Product> OrderByNameDescending()
-        {
-            var products = _unitOfWork.Products.Query.OrderByDescending(x => x.Name);
-            return products;
-        }
-
-        public IEnumerable<Product> OrderByPrice()
-        {
-            var products = _unitOfWork.Products.Query.OrderBy(x => x.Price);
-            return products;
-        }
-
-        public IEnumerable<Product> OrderByDate()
-        {
-            var products = _unitOfWork.Products.Query.OrderBy( x => x.Date);
+            var products = _unitOfWork.Products.GetAll();
+            switch (sortOrder)
+            {
+                default:
+                    products.OrderBy(x => x.Name);
+                    break;
+            }
             return products;
         }
 

@@ -50,5 +50,11 @@ namespace InternetShop.Controllers
 
             return Json(products, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult SortProduct(string sortOrder)
+        {
+            var products = _productService.Sort(sortOrder);
+            return View("GetProducts", products);
+        }
     }
 }
