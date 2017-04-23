@@ -8,6 +8,14 @@
     <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
+<div class = "row">
+    <select class="form-control" id="sort-order-dropdown" name="sortOrder">
+        <option>Name</option>
+        <option>Date</option>
+        <option>Price</option>
+    </select>
+</div>
+
 <div class="row">
    @{Html.RenderAction("GetProducts", "Product");}
 </div>
