@@ -9,11 +9,13 @@
 </div>
 
 <div class = "row">
-    <select class="form-control" id="sort-order-dropdown" name="sortOrder">
-        <option>Name</option>
-        <option>Date</option>
-        <option>Price</option>
-    </select>
+    <form id="sortForm" method="post" action="@Url.Action("SortProduct", "Product")">
+        <select class="form-control" id="sort-order-dropdown" name="sortOrder" onchange = "$('#sortForm').submit()">
+            <option>Name</option>
+            <option>Date</option>
+            <option>Price</option>
+        </select>
+    </form>
 </div>
 
 <div class="row">
