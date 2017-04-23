@@ -72,10 +72,10 @@ namespace LogicLayer.Services
                 case "Name (Z - A)":
                     products = products.OrderByDescending(x => x.Name);
                     break;
-                case "Price(Low - High)":
+                case "Price (Low - High)":
                     products = products.OrderBy(x => x.Price);
                     break;
-                case "Price(High - Low)":
+                case "Price (High - Low)":
                     products = products.OrderByDescending(x => x.Price);
                     break;
                 case "Date (Newest - Oldest)":
