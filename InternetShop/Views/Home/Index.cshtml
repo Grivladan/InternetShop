@@ -11,9 +11,12 @@
 <div class = "row">
     <form id="sortForm" method="post" action="@Url.Action("SortProduct", "Product")">
         <select class="form-control" id="sort-order-dropdown" name="sortOrder" onchange = "$('#sortForm').submit()">
-            <option>Name</option>
-            <option>Date</option>
-            <option>Price</option>
+            <option>Date (Newest - Oldest)</option>
+            <option>Date (Oldest - Newest)</option>
+            <option>Name (A - Z)</option>
+            <option>Name (Z - A)</option>
+            <option>Price (Low - High)</option>
+            <option>Price (High - Low)</option>
         </select>
     </form>
 </div>

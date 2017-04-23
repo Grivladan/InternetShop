@@ -66,8 +66,26 @@ namespace LogicLayer.Services
             var products = _unitOfWork.Products.GetAll();
             switch (sortOrder)
             {
+                case "Name (A - Z)":
+                    products = products.OrderBy(x => x.Name);
+                    break;
+                case "Name (Z - A)":
+                    products = products.OrderByDescending(x => x.Name);
+                    break;
+                case "Price(Low - High)":
+                    products = products.OrderBy(x => x.Price);
+                    break;
+                case "Price(High - Low)":
+                    products = products.OrderByDescending(x => x.Price);
+                    break;
+                case "Date (Newest - Oldest)":
+                    products = products.OrderByDescending(x => x.Date);
+                    break;
+                case "Date (Oldest - Newest)":
+                    products = products.OrderBy(x => x.Date);
+                    break;
                 default:
-                    products.OrderBy(x => x.Name);
+                    products = products.OrderByDescending(x => x.Date);
                     break;
             }
             return products;
