@@ -8,6 +8,10 @@
     <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
+<div class="row">
+    @{Html.RenderAction("GetAllCategories", "Category");}
+</div>
+
 <div class = "row">
     @using (Ajax.BeginForm("SortProduct", "Product", null, 
         new AjaxOptions { UpdateTargetId = "products-list", OnComplete = "OnComplete" }, new { id = "sortForm" }))
