@@ -9,7 +9,9 @@
 </div>
 
 <div class = "row">
-    <form id="sortForm" method="post" action="@Url.Action("SortProduct", "Product")">
+    @using (Ajax.BeginForm("SortProduct", "Product", null, 
+        new AjaxOptions { UpdateTargetId = "products-list", OnComplete = "OnComplete" }, new { id = "sortForm" }))
+    { 
         <select class="form-control" id="sort-order-dropdown" name="sortOrder" onchange = "$('#sortForm').submit()">
             <option>Date (Newest - Oldest)</option>
             <option>Date (Oldest - Newest)</option>
@@ -18,9 +20,9 @@
             <option>Price (Low - High)</option>
             <option>Price (High - Low)</option>
         </select>
-    </form>
+    }
 </div>
 
-<div class="row">
-   @{Html.RenderAction("GetProducts", "Product");}
+<div class="row" id="products-list">
+    @{Html.RenderAction("GetProducts", "Product");}
 </div>

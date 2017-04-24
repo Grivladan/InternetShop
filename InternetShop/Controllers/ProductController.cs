@@ -54,7 +54,7 @@ namespace InternetShop.Controllers
         public ActionResult SortProduct(string sortOrder)
         {
             var products = _productService.Sort(sortOrder);
-            return View("GetProducts", products);
+            return PartialView("GetProducts", products);
         }
     }
 }
