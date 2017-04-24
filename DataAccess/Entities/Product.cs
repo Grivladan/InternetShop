@@ -12,6 +12,7 @@ namespace DataAccess.Entities
         public string Description { get; set; }
         public decimal Price { get; set; }
         public DateTime? Date { get; set; }
+        public byte[] Image { get; set; } 
 
         public Product()
         {
