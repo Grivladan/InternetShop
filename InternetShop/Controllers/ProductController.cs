@@ -57,6 +57,12 @@ namespace InternetShop.Controllers
             return View(product);
         }
 
+        public FileContentResult ProductImage(int id)
+        {
+            var product = _productService.GetById(id);
+            return new FileContentResult(product.Image, "image / jpeg");
+        }
+
         public ActionResult Search(string searchString)
         {
             var products = _productService.Search(searchString);
