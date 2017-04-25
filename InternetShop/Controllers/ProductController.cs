@@ -82,10 +82,10 @@ namespace InternetShop.Controllers
             return PartialView("GetProducts", products);
         }
 
-        public ActionResult GetProductsByCategory(int categoryId)
+        public ActionResult GetProductsByCategory(int categoryId = 0)
         {
             var products = _productService.GetProductsByCategory(categoryId);
-            return PartialView("GetProducts", products);
+            return PartialView("GetProducts", products.ToList());
         }
     }
 }
