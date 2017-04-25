@@ -4,11 +4,12 @@
     Layout = null;
 }
 
-<div id="categories-list-name">Categories</div> 
+<p id="categories-list-name">Categories</p> 
 <div id="categories-list">
     @foreach(var item in Model)
     {
-        <p>@Html.ActionLink(@item.Name, "GetProductsByCategory", "Product", new { categoryId = item.Id}, null)</p>
+        <p>@Ajax.ActionLink(@item.Name, "GetProductsByCategory", "Product",
+                             new { categoryId = item.Id}, new AjaxOptions { UpdateTargetId = "products-list" })</p>
     }
 </div>
 
