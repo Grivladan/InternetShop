@@ -8,8 +8,8 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="col-md-4">
-            <img src="@Url.Action("ProductImage", "Product", new { id = item.Id})" height="150" width="140" id="productImage"/>
+        <div class="col-md-4 product-cell">
+            <img src="@Url.Action("ProductImage", "Product", new { id = item.Id})" id="productImage"/>
             <p>@Html.DisplayFor(modelItem => item.Name)</p>
             <p>@Html.DisplayFor(modelItem => item.Category.Name)</p>
             <p>@Html.DisplayFor(modelItem => item.Price)</p>
@@ -24,5 +24,13 @@
 <style>
     #productImage{
         float:left;
+        height: 150px;
+        width: 140px;
+        margin: 10px;
+    }
+
+    .product-cell{
+        border : 1px solid #d3d3d3;
+        padding : 10px;
     }
 </style>
