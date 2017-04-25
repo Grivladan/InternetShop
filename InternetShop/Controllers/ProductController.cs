@@ -81,5 +81,11 @@ namespace InternetShop.Controllers
             var products = _productService.Sort(sortOrder);
             return PartialView("GetProducts", products);
         }
+
+        public ActionResult GetProductsByCategory(int categoryId)
+        {
+            var products = _productService.GetProductsByCategory(categoryId);
+            return PartialView("GetProducts", products);
+        }
     }
 }

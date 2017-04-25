@@ -8,25 +8,27 @@
     <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
-<div class="row">
+<div class="col-md-2">
     @{Html.RenderAction("GetAllCategories", "Category");}
 </div>
 
-<div class = "row">
-    @using (Ajax.BeginForm("SortProduct", "Product", null, 
-        new AjaxOptions { UpdateTargetId = "products-list", OnComplete = "OnComplete" }, new { id = "sortForm" }))
-    { 
-        <select class="form-control" id="sort-order-dropdown" name="sortOrder" onchange = "$('#sortForm').submit()">
-            <option>Date (Newest - Oldest)</option>
-            <option>Date (Oldest - Newest)</option>
-            <option>Name (A - Z)</option>
-            <option>Name (Z - A)</option>
-            <option>Price (Low - High)</option>
-            <option>Price (High - Low)</option>
-        </select>
-    }
-</div>
+<div class="col-md-10">
+    <div class = "row">
+        @using (Ajax.BeginForm("SortProduct", "Product", null, 
+            new AjaxOptions { UpdateTargetId = "products-list", OnComplete = "OnComplete" }, new { id = "sortForm" }))
+        { 
+            <select class="form-control" id="sort-order-dropdown" name="sortOrder" onchange = "$('#sortForm').submit()">
+                <option>Date (Newest - Oldest)</option>
+                <option>Date (Oldest - Newest)</option>
+                <option>Name (A - Z)</option>
+                <option>Name (Z - A)</option>
+                <option>Price (Low - High)</option>
+                <option>Price (High - Low)</option>
+            </select>
+        }
+    </div>
 
-<div class="row" id="products-list">
-    @{Html.RenderAction("GetProducts", "Product");}
+    <div class="row" id="products-list">
+        @{Html.RenderAction("GetProductsByCategory", "Product");}
+    </div>
 </div>

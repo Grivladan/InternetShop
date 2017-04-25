@@ -12,6 +12,7 @@ namespace LogicLayer.Interfaces
         void Remove(int id);
         IEnumerable<Product> Search(string searchString);
         IEnumerable<Product> Sort(string sortOrder);
+        IEnumerable<Product> GetProductsByCategory(int categoryId);
 
         void Dispose();
     }
