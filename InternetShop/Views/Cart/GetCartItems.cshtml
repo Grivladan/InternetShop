@@ -1,8 +1,5 @@
 ﻿@model IEnumerable<DataAccess.Entities.Cart>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -29,7 +26,7 @@
             @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Delete", "RemoveFromCart", new { id=item.Id })
         </td>
     </tr>
 }

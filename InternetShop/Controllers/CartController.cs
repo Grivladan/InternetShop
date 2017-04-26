@@ -26,5 +26,11 @@ namespace InternetShop.Controllers
             var cartItems = _cartService.GetAllCartItems();
             return View(cartItems);
         }
+
+        public ActionResult RemoveFromCart(int id)
+        {
+            _cartService.RemoveFromCart(id);
+            return RedirectToAction("GetCartItems");
+        }
     }
 }
