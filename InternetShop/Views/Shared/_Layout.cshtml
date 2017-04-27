@@ -39,7 +39,7 @@
                     <i class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></i>
                 </button>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search" name="searchString">
+                    <input type="text" class="form-control" placeholder="Search" name="searchString" id="searchString">
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
@@ -80,5 +80,26 @@
                     $("#cartItemsCounter").html(data.countCartItems);
                 }
             });
+        });
+
+        $("#searchStr").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Product/AutocompleteSearch",
+                    type: "POST",
+                    dataType: "json",
+                    minLength: 1,
+                    data: { "searchString": request.searchString },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.name, value: item.name };
+                        }))
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (resultsCount) { }
+            }
         });
 </script>
