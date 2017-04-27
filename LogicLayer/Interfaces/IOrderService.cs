@@ -6,9 +6,9 @@ namespace LogicLayer.Interfaces
     public interface IOrderService
     {
         void Create(Order order);
-        void Update(Order order);
+        void Update(int id, Order order);
         IEnumerable<Order> GetAll();
-        Order GetById(Order order);
+        Order GetById(int id);
 
         void Dispose();
     }

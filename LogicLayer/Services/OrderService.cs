@@ -16,27 +16,34 @@ namespace LogicLayer.Services
 
         public void Create(Order order)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Orders.Create(order);
+            _unitOfWork.Save();
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _unitOfWork.Dispose();
         }
 
         public IEnumerable<Order> GetAll()
         {
-            throw new NotImplementedException();
+            var orders = _unitOfWork.Orders.GetAll();
+            return orders;
         }
 
-        public Order GetById(Order order)
+        public Order GetById(int id)
         {
-            throw new NotImplementedException();
+            var order = _unitOfWork.Orders.GetById(id);
+            return order;
         }
 
-        public void Update(Order order)
+        public void Update(int id, Order order)
         {
-            throw new NotImplementedException();
+            var orderItem = _unitOfWork.Orders.GetById(id);
+            if (orderItem == null)
+                throw new ArgumentNullException();
+            _unitOfWork.Orders.Update(orderItem);
+            _unitOfWork.Save();
         }
     }
 }
