@@ -10,6 +10,7 @@ namespace DataAccess.Interfaces
         IRepository<Product> Products { get; }
         IRepository<Cart> Carts { get; }
         IRepository<Category> Categories {get; }
+        IRepository<Order> Orders { get; }
 
         void Save();
     }

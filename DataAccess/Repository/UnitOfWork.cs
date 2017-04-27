@@ -21,15 +21,16 @@ namespace DataAccess.Repository
             _manager = manager;
         }
 
-        private IRepository<Product> _bookRepository;
+        private IRepository<Product> _productRepository;
         private IRepository<Cart> _cartRepository;
         private IRepository<Category> _categoryRepository;
+        private IRepository<Order> _orderRepository;
 
         public IRepository<Product> Products
         {
             get
             {
-                return _bookRepository ?? (_bookRepository = _repositoryFactory.CreateRepository<Product>(_context));
+                return _productRepository ?? (_productRepository = _repositoryFactory.CreateRepository<Product>(_context));
             }
         }
 
@@ -46,6 +47,14 @@ namespace DataAccess.Repository
             get
             {
                 return _categoryRepository ?? (_categoryRepository = _repositoryFactory.CreateRepository<Category>(_context));
+            }
+        }
+
+        public IRepository<Order> Orders
+        {
+            get
+            {
+                return _orderRepository ?? (_orderRepository = _repositoryFactory.CreateRepository<Order>(_context));
             }
         }
 
