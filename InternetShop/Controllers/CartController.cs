@@ -32,5 +32,17 @@ namespace InternetShop.Controllers
             _cartService.RemoveFromCart(id);
             return RedirectToAction("GetCartItems");
         }
+
+        public ActionResult GetCartCount()
+        {
+            var countCartItems = _cartService.GetCartCount();
+            return Json(new { countCartItems}, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult RemoveAll()
+        {
+            _cartService.RemoveAll();
+            return View();
+        }
     }
 }

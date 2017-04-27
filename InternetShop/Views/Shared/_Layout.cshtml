@@ -20,10 +20,13 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <a href="@Url.Action("GetCartItems", "Cart")" class="btn btn-warning">
-                    Cart
-                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-                </a>
+                <div>
+                    <a href="@Url.Action("GetCartItems", "Cart")" class="btn btn-warning">
+                        Cart
+                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                    </a>
+                    <span id="cartItemsCounter" hidden>0</span>
+                </div>
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
@@ -66,7 +69,16 @@
 <script>
     $(document).ready(function () {
         $(".categories").hover(function () {
-            
+
         });
-    });
+
+        $.getJSON(
+            "@Url.Action("GetCartCount", "Cart")",
+            function(data) {
+                if (data.countCartItems != 0) {
+                    document.getElementById("cartItemsCounter").hidden = false;
+                    $("#cartItemsCounter").html(data.countCartItems);
+                }
+            });
+        });
 </script>

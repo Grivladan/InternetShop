@@ -87,5 +87,6 @@ namespace InternetShop.Controllers
             var products = _productService.GetProductsByCategory(categoryId);
             return PartialView("GetProducts", products.ToList());
         }
+
     }
 }
