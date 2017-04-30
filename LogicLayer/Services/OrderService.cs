@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using DataAccess.Entities;
 using LogicLayer.Interfaces;
 using DataAccess.Interfaces;
+using System.Linq;
+using System.Web;
 
 namespace LogicLayer.Services
 {
@@ -16,7 +18,19 @@ namespace LogicLayer.Services
 
         public void Create(Order order)
         {
-           // var carts = _unitOfWork.Carts.
+            var cartItems = _unitOfWork.Carts.Query.Where(x => x.SessionId == HttpContext.Current.Session.SessionID);
+            foreach(var item in cartItems)
+            {
+                var orderDetail = new Detail
+                {
+                    Order = order,
+                    Product = item.Product,
+                    ProductId = item.Product.Id,
+                    Quantity = item.Count,
+                    UnitPrice = item.Product.Price
+                };
+                _unitOfWork.Orders.Create(order);
+            }
             _unitOfWork.Orders.Create(order);
             _unitOfWork.Save();
         }

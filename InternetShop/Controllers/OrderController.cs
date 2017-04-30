@@ -1,5 +1,6 @@
 ﻿using DataAccess.Entities;
 using DataAccess.Interfaces;
+using LogicLayer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,10 @@ namespace InternetShop.Controllers
 {
     public class OrderController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public OrderController(IUnitOfWork unitOfWork)
+        private readonly IOrderService _orderService;
+        public OrderController(IOrderService orderService)
         {
-            _unitOfWork = unitOfWork;
+            _orderService = orderService;
         }
 
         public ActionResult CreateOrder()
@@ -24,7 +25,11 @@ namespace InternetShop.Controllers
         [HttpPost]
         public ActionResult CreateOrder(Order order)
         {
-            _unitOfWork.Orders.Create(order);
+            if (ModelState.IsValid)
+            {
+                _orderService.Create(order);
+                return RedirectToAction("Index","Home");
+            }
             return View(order);
         }
     }
