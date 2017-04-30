@@ -103,7 +103,7 @@ namespace LogicLayer.Services
         public int GetCartCount()
         {
             var carts = GetAllCartItems();
-            return carts.Count();
+            return carts.Sum(x => x.Count);
         }
 
         public void Update(int id, Cart cart)

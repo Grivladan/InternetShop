@@ -24,8 +24,8 @@
                     <a href="@Url.Action("GetCartItems", "Cart")" class="btn btn-warning">
                         Cart
                         <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                        <span id="cartItemsCounter" hidden>0</span>
                     </a>
-                    <span id="cartItemsCounter" hidden>0</span>
                 </div>
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
@@ -35,9 +35,6 @@
                 @Html.Partial("_LoginPartial")
             </div>
            <form class="navbar-form navbar-left" method="post" action="@Url.Action("Search", "Product")">
-                <button class="btn btn-default categories" type="button">
-                    <i class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></i>
-                </button>
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search" name="searchString" id="searchString">
                 </div>
@@ -56,6 +53,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+    @Scripts.Render("~/bundles/jqueryui")
     @RenderSection("scripts", required: false)
 </body>
 </html>
@@ -82,14 +80,14 @@
             });
         });
 
-        $("#searchStr").autocomplete({
-            source: function (request, response) {
+        $("#searchString").autocomplete({
+            source: function(request, response) {
                 $.ajax({
                     url: "/Product/AutocompleteSearch",
                     type: "POST",
                     dataType: "json",
                     minLength: 1,
-                    data: { "searchString": request.searchString },
+                    data: { "searchString": request.term },
                     success: function (data) {
                         response($.map(data, function (item) {
                             return { label: item.name, value: item.name };
