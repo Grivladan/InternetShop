@@ -19,6 +19,7 @@ namespace LogicLayer.Services
         public void Create(Order order)
         {
             var cartItems = _unitOfWork.Carts.Query.Where(x => x.SessionId == HttpContext.Current.Session.SessionID);
+            decimal orderTotal = 0;
             foreach(var item in cartItems)
             {
                 var orderDetail = new Detail
@@ -29,8 +30,11 @@ namespace LogicLayer.Services
                     Quantity = item.Count,
                     UnitPrice = item.Product.Price
                 };
-                _unitOfWork.Orders.Create(order);
+                orderTotal += item.Count * item.Product.Price;
+
             }
+            order.Total = orderTotal;
+
             _unitOfWork.Orders.Create(order);
             _unitOfWork.Save();
         }
