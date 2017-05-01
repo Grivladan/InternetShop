@@ -5,6 +5,13 @@ using System.Collections.Generic;
 
 namespace DataAccess.Entities
 {
+    public enum OrderStatus
+    {
+        REGISTERED,
+        PAYED,
+        CANCELED
+    };
+
     public class Order : IEntity
     {
         public int Id { get; set; }
@@ -18,6 +25,7 @@ namespace DataAccess.Entities
         public string Phone { get; set; }
         public DateTime Date { get; set; }
         public decimal Total { get; set; }
+        public OrderStatus OrderStatus { get; set; }
 
         public virtual ApplicationUser Owner { get; set; }
         public string OwnerId { get; set; }
@@ -26,6 +34,7 @@ namespace DataAccess.Entities
         public Order()
         {
             Date = DateTime.Now;
+            OrderStatus = OrderStatus.REGISTERED;
             Details =new List<Detail>();
         }
     }
