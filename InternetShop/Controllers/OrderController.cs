@@ -32,5 +32,11 @@ namespace InternetShop.Controllers
             }
             return View(order);
         }
+
+        public ActionResult GetAllOrders()
+        {
+            var orders = _orderService.GetAll();
+            return View(orders);
+        }
     }
 }

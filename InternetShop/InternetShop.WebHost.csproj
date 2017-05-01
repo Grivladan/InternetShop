@@ -348,6 +348,7 @@
     <Content Include="Views\Product\CreateProduct.cshtml" />
     <Content Include="Views\Cart\GetCartItems.cshtml" />
     <Content Include="Views\Order\CreateOrder.cshtml" />
+    <Content Include="Views\Order\GetAllOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\InternetShop.DataAccess.csproj">
