@@ -68,9 +68,9 @@ namespace InternetShop
                 })
             });
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "784464008384576",
+               appSecret: "647d25e957e276bc6888ec32376355d1");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
