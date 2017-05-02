@@ -58,11 +58,11 @@ namespace InternetShop
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "392503782225-2qtjk5ji2lkgnced2s9f39q9fl66d85h.apps.googleusercontent.com",
+                ClientSecret = "jthVZYL4z1ZuMgUKYJTO-AVJ"
+            });
         }
     }
 }
