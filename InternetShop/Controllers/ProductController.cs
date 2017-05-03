@@ -88,5 +88,11 @@ namespace InternetShop.Controllers
             return PartialView("GetProducts", products.ToList());
         }
 
+        public ActionResult Delete(int id)
+        {
+            _productService.Remove(id);
+            return RedirectToAction("GetAllProductsAdmin", "Admin");
+        }
+
     }
 }
