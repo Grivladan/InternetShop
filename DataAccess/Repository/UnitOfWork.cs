@@ -26,6 +26,14 @@ namespace DataAccess.Repository
         private IRepository<Category> _categoryRepository;
         private IRepository<Order> _orderRepository;
 
+        public UserManager<ApplicationUser> UserManager
+        {
+            get
+            {
+                return _manager;
+            }
+        }
+
         public IRepository<Product> Products
         {
             get

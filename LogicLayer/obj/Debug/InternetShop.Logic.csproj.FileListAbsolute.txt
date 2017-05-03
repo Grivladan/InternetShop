@@ -7,7 +7,6 @@ C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\bin\Debug\Ninject.xml
 C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\bin\Debug\DataAccess.dll
 C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\bin\Debug\EntityFramework.dll
-C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\bin\Debug\Ninject.Extensions.Factory.dll
 C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\bin\Debug\Castle.Core.dll
 C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\bin\Debug\DataAccess.pdb

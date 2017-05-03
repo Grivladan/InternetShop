@@ -7,6 +7,7 @@ namespace DataAccess.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
+        UserManager<ApplicationUser> UserManager { get; }
         IRepository<Product> Products { get; }
         IRepository<Cart> Carts { get; }
         IRepository<Category> Categories {get; }
