@@ -1,7 +1,10 @@
-﻿using LogicLayer.Interfaces;
+﻿using InternetShop.DataAccess.Entities;
+using LogicLayer.Interfaces;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -27,6 +30,17 @@ namespace InternetShop.Controllers
         {
             var users = _userManager.Users.ToList();
             return View(users);
+        }
+
+        public async Task<ActionResult> DeleteUser(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            var result = await _userManager.DeleteAsync(user);
+            return RedirectToAction("GetAllUsers", "Admin");
         }
     }
 }
