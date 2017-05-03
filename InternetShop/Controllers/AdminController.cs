@@ -13,11 +13,11 @@ namespace InternetShop.Controllers
     public class AdminController : Controller
     {
         readonly private IProductService _productService;
-        readonly private ApplicationUserManager _userManager;
-        public AdminController(IProductService productService, ApplicationUserManager userManager)
+        readonly private IUserService _userService;
+        public AdminController(IProductService productService, IUserService userService)
         {
             _productService = productService;
-            _userManager = userManager;
+            _userService = userService;
         }
 
         public ActionResult GetAllProductsAdmin()
@@ -28,19 +28,19 @@ namespace InternetShop.Controllers
 
         public ActionResult GetAllUsers()
         {
-            var users = _userManager.Users.ToList();
+            var users = _userService.GetAll();
             return View(users);
         }
 
-        public async Task<ActionResult> DeleteUser(string id)
-        {
-            var user = await _userManager.FindByIdAsync(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            var result = await _userManager.DeleteAsync(user);
-            return RedirectToAction("GetAllUsers", "Admin");
-        }
+        //public async Task<ActionResult> DeleteUser(string id)
+        //{
+        //    var user = await _userManager.FindByIdAsync(id);
+        //    if (user == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    var result = await _userManager.DeleteAsync(user);
+        //    return RedirectToAction("GetAllUsers", "Admin");
+        //}
     }
 }

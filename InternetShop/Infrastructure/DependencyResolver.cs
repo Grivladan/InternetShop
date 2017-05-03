@@ -12,6 +12,7 @@ namespace InternetShop.Infrastructure
             Bind<ICategoryService>().To<CategoryService>();
             Bind<ICartService>().To<CartService>();
             Bind<IOrderService>().To<OrderService>();
+            Bind<IUserService>().To<UserService>();
         }
     }
 }

@@ -2,6 +2,7 @@
 using DataAccess.Interfaces;
 using InternetShop.DataAccess.Entities;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 
 namespace DataAccess.Repository
@@ -11,16 +12,15 @@ namespace DataAccess.Repository
         private ApplicationDbContext _context;
         private bool _isDisposed;
         private readonly IRepositoryFactory _repositoryFactory;
-        private readonly UserManager<ApplicationUser> _manager;
 
         public UnitOfWork(ApplicationDbContext context, IRepositoryFactory repositoryFactory,
             UserManager<ApplicationUser> manager)
         {
             _context = context;
             _repositoryFactory = repositoryFactory;
-            _manager = manager;
         }
 
+        private UserManager<ApplicationUser> _manager;
         private IRepository<Product> _productRepository;
         private IRepository<Cart> _cartRepository;
         private IRepository<Category> _categoryRepository;
@@ -30,7 +30,7 @@ namespace DataAccess.Repository
         {
             get
             {
-                return _manager;
+                return _manager ?? (_manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context)));
             }
         }
 
