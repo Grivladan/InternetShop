@@ -32,15 +32,10 @@ namespace InternetShop.Controllers
             return View(users);
         }
 
-        //public async Task<ActionResult> DeleteUser(string id)
-        //{
-        //    var user = await _userManager.FindByIdAsync(id);
-        //    if (user == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    var result = await _userManager.DeleteAsync(user);
-        //    return RedirectToAction("GetAllUsers", "Admin");
-        //}
+        public async Task<ActionResult> DeleteUser(string id)
+        {
+            await _userService.Delete(id);
+            return RedirectToAction("GetAllUsers", "Admin");
+        }
     }
 }

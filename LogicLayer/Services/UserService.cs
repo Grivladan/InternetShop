@@ -27,5 +27,15 @@ namespace LogicLayer.Services
             var users = _unitOfWork.UserManager.Users;
             return users;
         }
+
+        public async Task Delete(string id)
+        {
+            var user = await _unitOfWork.UserManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                throw new Exception();
+            }
+            var result = await _unitOfWork.UserManager.DeleteAsync(user);
+        }
     }
 }

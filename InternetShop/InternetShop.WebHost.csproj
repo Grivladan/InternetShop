@@ -353,7 +353,7 @@
     <Content Include="Views\Cart\GetCartItems.cshtml" />
     <Content Include="Views\Order\CreateOrder.cshtml" />
     <Content Include="Views\Order\GetAllOrders.cshtml" />
-    <Content Include="Views\Administrator\GetAllProductsAdmin.cshtml" />
+    <Content Include="Views\Admin\GetAllProductsAdmin.cshtml" />
     <Content Include="Views\Admin\GetAllUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>

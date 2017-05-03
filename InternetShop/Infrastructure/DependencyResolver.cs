@@ -1,6 +1,8 @@
 ﻿using Ninject.Modules;
 using LogicLayer.Interfaces;
 using LogicLayer.Services;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace InternetShop.Infrastructure
 {

@@ -30,7 +30,7 @@ namespace DataAccess.Repository
         {
             get
             {
-                return _manager ?? (_manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context)));
+                return _manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
             }
         }
 

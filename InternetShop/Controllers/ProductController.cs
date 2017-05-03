@@ -14,10 +14,11 @@ namespace InternetShop.Controllers
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
         private readonly IUserService _userService;
-        public ProductController(IProductService productService, ICategoryService categoryService)
+        public ProductController(IProductService productService, ICategoryService categoryService, IUserService userService)
         {
             _productService = productService;
             _categoryService = categoryService;
+            _userService = userService;
         }
 
         public ActionResult GetProducts()

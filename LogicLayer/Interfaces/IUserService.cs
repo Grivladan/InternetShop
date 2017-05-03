@@ -10,6 +10,7 @@ namespace LogicLayer.Interfaces
     public interface IUserService
     {
         IEnumerable<ApplicationUser> GetAll();
+        Task Delete(string id);
 
         void Dispose();
     }
