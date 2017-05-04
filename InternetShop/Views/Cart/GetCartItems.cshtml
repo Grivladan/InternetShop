@@ -38,3 +38,67 @@
         Create Order
     </a>
 </div>
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <table id="cart" class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th style="width:50%">@Html.DisplayNameFor(model => model.Product.Name)</th>
+                <th style="width:10%">@Html.DisplayNameFor(model => model.Product.Price)</th>
+                <th style="width:8%">@Html.DisplayNameFor(model => model.Count)</th>
+                <th style="width:22%" class="text-center">Subtotal</th>
+                <th style="width:10%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td data-th="Product">
+                        <div class="row">
+                            <div class="col-sm-2 hidden-xs"><img src="@Url.Action("ProductImage", "Product", new { id = item.Id})" alt="..." class="img-responsive" id="productImage"/></div>
+                            <div class="col-sm-10">
+                                <h4 class="nomargin"> @Html.DisplayFor(modelItem => item.Product.Name)</h4>
+                                <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td data-th="Price">@Html.DisplayFor(modelItem => item.Count)</td>
+                    <td data-th="Quantity">
+                        <input type="number" class="form-control text-center" value="1">
+                    </td>
+                    <td data-th="Subtotal" class="text-center">1.99</td>
+                    <td class="actions" data-th="">
+                        <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                        <a href="@Url.Action("RemoveFromCart", "Cart", new { id=item.Id })" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr class="visible-xs">
+                <td class="text-center"><strong>Total 1.99</strong></td>
+            </tr>
+            <tr>
+                <td><a href="@Url.Action("Index", "Home")" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                <td colspan="2" class="hidden-xs"></td>
+                <td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
+                <td><a href="@Url.Action("CreateOrder", "Order")" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<style>
+    .table>tbody>tr>td, .table>tfoot>tr>td
+    {
+        vertical-align: middle;
+    }
+
+    #productImage
+    {
+        width : 120px;
+        height : 80px;
+    }
+</style>
