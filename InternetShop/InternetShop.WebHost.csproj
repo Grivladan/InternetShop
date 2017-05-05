@@ -355,6 +355,7 @@
     <Content Include="Views\Order\GetAllOrders.cshtml" />
     <Content Include="Views\Admin\GetAllProductsAdmin.cshtml" />
     <Content Include="Views\Admin\GetAllUsers.cshtml" />
+    <Content Include="Views\Cart\DropDownCartItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\InternetShop.DataAccess.csproj">
