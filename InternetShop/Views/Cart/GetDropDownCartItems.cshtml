@@ -6,10 +6,10 @@
         <li>
             <span class="item">
                 <span class="item-left">
-                    <img src="http://lorempixel.com/50/50/" alt="" />
+                    <img src="@Url.Action("ProductImage", "Product", new { id = item.Id})" alt="" / id="product-image">
                     <span class="item-info">
-                        <span>Item name</span>
-                        <span>23$</span>
+                        <span>@item.Product.Name</span>
+                        <span>@item.Product.Price$</span>
                     </span>
                 </span>
                 <span class="item-right">
@@ -23,6 +23,11 @@
 </ul>
 
 <style>
+    #product-image{
+        width: 50px;
+        height: 50px;
+    }
+
     ul.dropdown-cart {
         min-width:250px;
     }
