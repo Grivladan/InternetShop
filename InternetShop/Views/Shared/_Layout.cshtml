@@ -32,17 +32,11 @@
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
                 @Html.Partial("_LoginPartial")
-                @*<div>
-                 <a href="@Url.Action("GetCartItems", "Cart")" class="btn btn-warning" id="shopping-cart">
-                     Cart
-                     <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-                     <span id="cartItemsCounter" hidden>0</span>
-                 </a>
-            </div>*@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> 7 - Items<span class="caret"></span></a>
-                        @Html.Partial("DropDownCartItems")
+                        <a href="@Url.Action("GetCartItems", "Cart")" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                         <span class="glyphicon glyphicon-shopping-cart"> </span> <span id="cartItemsCounter" hidden>0</span><span class="caret"></span></a>
+                        @{Html.RenderAction("GetDropDownCartItems", "Cart");}
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
