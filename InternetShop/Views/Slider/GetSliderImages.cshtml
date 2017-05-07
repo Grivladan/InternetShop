@@ -15,11 +15,9 @@
         </ol>
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
-            <!-- Item 1 -->
             @foreach (var item in Model)
             {
                 <div class="item slide" style="background-image: url(@item.src)">
-                    @*<img src=@item.src>*@ 
                 </div>
             }
         </div>
@@ -220,5 +218,23 @@
 <script>
     $(document).ready(function () {
         $('.carousel-inner .item:first').addClass('active');
+
+        (function ($) {
+
+        //Variables on page load 
+        var $myCarousel = $('#carousel-example-generic')
+
+        //Initialize carousel 
+        $myCarousel.carousel();
+
+        //Pause carousel  
+        $myCarousel.carousel('pause');
+
+        $('#carousel-example-generic').carousel({
+            interval: 3000,
+            pause: "false"
+        });
+
+    })(jQuery);
     });
 </script>
