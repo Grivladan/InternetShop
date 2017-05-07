@@ -8,10 +8,6 @@
     <div id="carousel-example-generic" class="carousel slide carousel-fade">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
         </ol>
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
@@ -223,6 +219,14 @@
 
         //Variables on page load 
         var $myCarousel = $('#carousel-example-generic')
+
+        $myCarousel.append("<ol class='carousel-indicators'></ol>");
+        var indicators = $(".carousel-indicators");
+        $myCarousel.find(".carousel-inner").children(".item").each(function (index) {
+            (index === 0) ?
+            indicators.append("<li data-target='#carousel-example-generic' data-slide-to='" + index + "' class='active'></li>") :
+            indicators.append("<li data-target='#carousel-example-generic' data-slide-to='" + index + "'></li>");
+        });
 
         //Initialize carousel 
         $myCarousel.carousel();
