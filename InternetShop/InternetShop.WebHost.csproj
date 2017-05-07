@@ -223,6 +223,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SliderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -356,6 +357,7 @@
     <Content Include="Views\Admin\GetAllProductsAdmin.cshtml" />
     <Content Include="Views\Admin\GetAllUsers.cshtml" />
     <Content Include="Views\Cart\GetDropDownCartItems.cshtml" />
+    <Content Include="Views\Slider\GetSliderImages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\InternetShop.DataAccess.csproj">

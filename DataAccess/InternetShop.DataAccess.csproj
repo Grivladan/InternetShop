@@ -76,6 +76,7 @@
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\Detail.cs" />
     <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\Slider.cs" />
     <Compile Include="Infrastucture\DataAccessModule.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
