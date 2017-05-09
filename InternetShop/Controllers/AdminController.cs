@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace InternetShop.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         readonly private IProductService _productService;

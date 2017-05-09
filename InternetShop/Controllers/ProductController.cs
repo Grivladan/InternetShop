@@ -90,6 +90,7 @@ namespace InternetShop.Controllers
             return PartialView("GetProducts", products.ToList());
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
             _productService.Remove(id);
