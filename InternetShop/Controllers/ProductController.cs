@@ -75,7 +75,7 @@ namespace InternetShop.Controllers
         {
             var products = _productService.Search(searchString);
 
-            return Json(products, JsonRequestBehavior.AllowGet);
+            return Json(products.ToList(), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult SortProduct(string sortOrder)
