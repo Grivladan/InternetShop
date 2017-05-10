@@ -19,7 +19,7 @@ namespace DataAccess.EF
             roleManager.Create(role1);
             roleManager.Create(role2);
 
-            var admin = new ApplicationUser { Email = "grigorenkovlad1993@gmail.com", UserName = "grigorenkovlad1993@gmail.com"};
+            var admin = new ApplicationUser { Email = "grigorenkovlad1993@gmail.com", UserName = "grigorenkovlad1993@gmail.com", IsEnabled = true};
             string password = "13101993Gv_";
             var result = userManager.Create(admin, password);
 
