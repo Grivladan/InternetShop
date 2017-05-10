@@ -19,6 +19,7 @@ namespace InternetShop.DataAccess.Entities
             return userIdentity;
         }
 
+        public bool? IsEnabled { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
 
         public ApplicationUser()
