@@ -33,10 +33,22 @@ namespace InternetShop.Controllers
             return View(users);
         }
 
-        public async Task<ActionResult> DeleteUser(string id)
+        public ActionResult AddToBlackList(string id)
         {
-            await _userService.Delete(id);
+            _userService.AddToBlackList(id);
             return RedirectToAction("GetAllUsers", "Admin");
+        }
+
+        public ActionResult RemoveFromBlackList(string id)
+        {
+            _userService.RemoveFromBlackList(id);
+            return RedirectToAction("GetBlackList","Admin");
+        }
+
+        public ActionResult GetBlackList()
+        {
+            var bannedUsers = _userService.GetBlackList();
+            return View(bannedUsers);
         }
     }
 }

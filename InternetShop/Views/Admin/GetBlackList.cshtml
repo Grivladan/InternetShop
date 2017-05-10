@@ -1,0 +1,38 @@
+﻿@model IEnumerable<InternetShop.DataAccess.Entities.ApplicationUser>
+
+<div class="container">
+    <table class="table table-striped banned-user-tab">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                <td class="text-center"><a class='btn btn-info btn-xs' href="#">Unlock user</a></td>
+            </tr>
+        }
+    </table>
+</div>
+
+<style>
+    .banned-user-tab {
+        border: 1px solid #ccc;
+        padding: 5px;
+        margin: 5% 0;
+        box-shadow: 3px 3px 2px #ccc;
+        transition: 0.5s;
+    }
+
+    .banned-user-tab:hover {
+        box-shadow: 3px 3px 0px transparent;
+        transition: 0.5s;
+    }
+</style>
+

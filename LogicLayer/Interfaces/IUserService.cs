@@ -10,6 +10,7 @@ namespace LogicLayer.Interfaces
     public interface IUserService
     {
         IEnumerable<ApplicationUser> GetAll();
+        IEnumerable<ApplicationUser> GetBlackList();
         void AddToBlackList(string id);
         void RemoveFromBlackList(string id);
 
