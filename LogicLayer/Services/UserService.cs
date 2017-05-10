@@ -33,12 +33,14 @@ namespace LogicLayer.Services
         {
             var user = _unitOfWork.UserManager.FindById(id);
             user.IsEnabled = false;
+            _unitOfWork.Save();
         }
 
         public void RemoveFromBlackList(string id)
         {
             var user = _unitOfWork.UserManager.FindById(id);
             user.IsEnabled = true;
+            _unitOfWork.Save();
         }
 
         public IEnumerable<ApplicationUser> GetBlackList()

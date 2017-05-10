@@ -17,7 +17,7 @@
                 <td>@Html.DisplayFor(modelItem => item.UserName)</td>
                 <td>@Html.DisplayFor(modelItem => item.Email)</td>
               @*  <td>@Html.DisplayFor(modelItem => item.Orders)</td>*@
-                <td class="text-center"><a class='btn btn-info btn-xs' href="/Admin/AddToBlackList">Add to Blacklist</a></td>
+                <td class="text-center"><a class='btn btn-info btn-xs' href="@Url.Action("AddToBlackList", "Admin", new { id = item.Id })">Add to Blacklist</a></td>
             </tr>
         }
     </table>
