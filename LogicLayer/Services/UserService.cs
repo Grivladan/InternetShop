@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using InternetShop.DataAccess.Entities;
 using DataAccess.Interfaces;
+using Microsoft.AspNet.Identity;
 
 namespace LogicLayer.Services
 {
@@ -28,14 +29,22 @@ namespace LogicLayer.Services
             return users;
         }
 
-        public async Task Delete(string id)
+        public void AddToBlackList(string id)
         {
-            var user = await _unitOfWork.UserManager.FindByIdAsync(id);
-            if (user == null)
-            {
-                throw new Exception();
-            }
-            var result = await _unitOfWork.UserManager.DeleteAsync(user);
+            var user = _unitOfWork.UserManager.FindById(id);
+            user.IsEnabled = false;
+        }
+
+        public void RemoveFromBlackList(string id)
+        {
+            var user = _unitOfWork.UserManager.FindById(id);
+            user.IsEnabled = true;
+        }
+
+        public IEnumerable<ApplicationUser> GetBlackList()
+        {
+            var bannedUsers = _unitOfWork.UserManager.Users.Where(x => x.IsEnabled == false);
+            return bannedUsers; 
         }
     }
 }

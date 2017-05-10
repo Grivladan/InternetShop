@@ -10,7 +10,8 @@ namespace LogicLayer.Interfaces
     public interface IUserService
     {
         IEnumerable<ApplicationUser> GetAll();
-        Task Delete(string id);
+        void AddToBlackList(string id);
+        void RemoveFromBlackList(string id);
 
         void Dispose();
     }
