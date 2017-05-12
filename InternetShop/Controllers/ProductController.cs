@@ -97,5 +97,28 @@ namespace InternetShop.Controllers
             return RedirectToAction("GetAllProductsAdmin", "Admin");
         }
 
+        public ActionResult Edit(int id)
+        {
+            var product = _productService.GetById(id);
+            if(product == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(product);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                _productService.Update(product.Id, product);
+                return RedirectToAction("GetAllProductsAdmin", "Admin");
+            }
+
+            return View(product);
+        }
+
     }
 }
