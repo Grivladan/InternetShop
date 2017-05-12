@@ -129,5 +129,7 @@ namespace LogicLayer.Services
             decimal? sum = carts.Select(x => x.Count * x.Product.Price).Sum();
             return sum ?? decimal.Zero;
         }
+
+
     }
 }

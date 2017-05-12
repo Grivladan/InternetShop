@@ -31,7 +31,7 @@ namespace LogicLayer.Services
                     UnitPrice = item.Product.Price
                 };
                 orderTotal += item.Count * item.Product.Price;
-
+                
             }
             order.Total = orderTotal;
 

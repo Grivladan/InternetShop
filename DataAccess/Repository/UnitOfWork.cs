@@ -25,6 +25,7 @@ namespace DataAccess.Repository
         private IRepository<Cart> _cartRepository;
         private IRepository<Category> _categoryRepository;
         private IRepository<Order> _orderRepository;
+        private IRepository<Detail> _detailRepository;
 
         public UserManager<ApplicationUser> UserManager
         {
@@ -63,6 +64,14 @@ namespace DataAccess.Repository
             get
             {
                 return _orderRepository ?? (_orderRepository = _repositoryFactory.CreateRepository<Order>(_context));
+            }
+        }
+
+        public IRepository<Detail> Details
+        {
+            get
+            {
+                return _detailRepository ?? (_detailRepository = _repositoryFactory.CreateRepository<Detail>(_context));
             }
         }
 
