@@ -38,5 +38,11 @@ namespace InternetShop.Controllers
             var orders = _orderService.GetAll();
             return View(orders);
         }
+
+        public ActionResult GetOrderById(int id)
+        {
+            var order = _orderService.GetById(id);
+            return View(order);
+        }
     }
 }
