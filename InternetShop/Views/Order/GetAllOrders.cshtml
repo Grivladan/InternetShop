@@ -21,7 +21,7 @@
                 <td>@Html.DisplayFor(modelItem => item.SecondName)</td>
                 <th>@Html.DisplayNameFor(model => model.Date)</th>
                 <td>@Html.DisplayFor(modelItem => item.Total)</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-info-sign"></span> Details</a></td>
+                <td class="text-center"><a class='btn btn-info btn-xs' href="@Url.Action("GetOrderById", "Order", new { id = item.Id}, null)"><span class="glyphicon glyphicon-info-sign"></span> Details</a></td>
             </tr>
         }
     </table>
