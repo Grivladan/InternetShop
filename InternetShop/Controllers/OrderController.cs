@@ -12,9 +12,11 @@ namespace InternetShop.Controllers
     public class OrderController : Controller
     {
         private readonly IOrderService _orderService;
-        public OrderController(IOrderService orderService)
+        private readonly ICartService _cartService;
+        public OrderController(IOrderService orderService, ICartService cartService)
         {
             _orderService = orderService;
+            _cartService = cartService;
         }
 
         public ActionResult CreateOrder()
@@ -27,7 +29,7 @@ namespace InternetShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                _orderService.Create(order);
+                _cartService.CreateOrder(order);
                 return RedirectToAction("Index","Home");
             }
             return View(order);

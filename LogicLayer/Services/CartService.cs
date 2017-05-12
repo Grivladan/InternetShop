@@ -130,6 +130,31 @@ namespace LogicLayer.Services
             return sum ?? decimal.Zero;
         }
 
+        public void CreateOrder(Order order)
+        {
+            var cartItems = GetAllCartItems();
+            decimal orderTotal = 0;
+            foreach (var item in cartItems)
+            {
+                var orderDetail = new Detail
+                {
+                    Order = order,
+                    Product = item.Product,
+                    ProductId = item.Product.Id,
+                    Quantity = item.Count,
+                    UnitPrice = item.Product.Price
+                };
 
+                _unitOfWork.Details.Create(orderDetail);
+                orderTotal += item.Count * item.Product.Price;
+
+            }
+            order.Total = orderTotal;
+
+            _unitOfWork.Orders.Create(order);
+            _unitOfWork.Save();
+
+         //   RemoveAll();
+        }
     }
 }

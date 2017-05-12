@@ -30,6 +30,8 @@ namespace LogicLayer.Services
                     Quantity = item.Count,
                     UnitPrice = item.Product.Price
                 };
+
+                _unitOfWork.Details.Create(orderDetail);
                 orderTotal += item.Count * item.Product.Price;
                 
             }
