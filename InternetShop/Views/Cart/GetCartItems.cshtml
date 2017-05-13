@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<DataAccess.Entities.Cart>
 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <div class="container">
     <table id="cart" class="table table-hover table-condensed">
         <thead>
@@ -31,7 +32,7 @@
                     </td>
                     <td data-th="Subtotal" class="text-center">1.99</td>
                     <td class="actions" data-th="">
-                        <a href="#" class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></a>
+                        <a href="#" class="btn btn-info btn-sm"><i class="fa fa-refresh RefreshQuantity" data-id="@item.Id"></i></a>
                         <a href="@Url.Action("RemoveFromCart", "Cart", new { id=item.Id })" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
@@ -65,22 +66,28 @@
 </style>
 
 <script>
-    $(".RefreshQuantity").click(function () {
-        // Get the id from the link 
-        var recordToUpdate = $(this).attr("data-id");
-        var countToUpdate = $("#" + $(this).attr("txt-id")).val();
-        if (recordToUpdate != '') {        
-            // Perform the ajax post 
-            $.post("/Cart/UpdateCartCount", { "id": recordToUpdate, "cartCount": countToUpdate },
-                function (data) {
-                    // Successful requests get here 
-                    // Update the page elements                        
-                    if (data.ItemCount == 0) {
-                        $('#row-' + data. DeleteId).fadeOut('slow');
-                    }
-                    $('#update-message').text(data.Message);
-                    $('#cart-total').text(data.CartTotal);
-                    $('#cart-status').text('Cart (' + data.CartCount + ')');                
-                });
-        }
+    $(document).ready(function () {
+        alert(123);
+        $(".RefreshQuantity").click(function () {
+            // Get the id from the link 
+            alert(123);
+            var recordToUpdate = $(this).attr("data-id");
+            alert(recordToUpdate);
+            var countToUpdate = $("#" + $(this).attr("txt-id")).val();
+            if (recordToUpdate != '') {
+                // Perform the ajax post 
+                $.post("/Cart/UpdateCartCount", { "id": recordToUpdate, "cartCount": countToUpdate },
+                    function (data) {
+                        // Successful requests get here 
+                        // Update the page elements                        
+                        if (data.ItemCount == 0) {
+                            $('#row-' + data.DeleteId).fadeOut('slow');
+                        }
+                        $('#update-message').text(data.Message);
+                        $('#cart-total').text(data.CartTotal);
+                        $('#cart-status').text('Cart (' + data.CartCount + ')');
+                    });
+            }
+        });
+    });
 </script>
