@@ -5,7 +5,7 @@
     <table id="cart" class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th style="width:50%">@Html.DisplayNameFor(model => model.Product.Name)</th>
+                <th style="width:50%" class="text-center">@Html.DisplayNameFor(model => model.Product)</th>
                 <th style="width:10%">@Html.DisplayNameFor(model => model.Product.Price)</th>
                 <th style="width:8%">@Html.DisplayNameFor(model => model.Count)</th>
                 <th style="width:22%" class="text-center">Subtotal</th>
@@ -25,13 +25,13 @@
                             </div>
                         </div>
                     </td>
-                    <td data-th="Price">@Html.DisplayFor(modelItem => item.Count)</td>
+                    <td data-th="Price">@Html.DisplayFor(modelItem => item.Product.Price)</td>
                     <td data-th="Quantity">
                         <input type="number" class="form-control text-center" value="1">
                     </td>
                     <td data-th="Subtotal" class="text-center">1.99</td>
                     <td class="actions" data-th="">
-                        <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                        <a href="#" class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></a>
                         <a href="@Url.Action("RemoveFromCart", "Cart", new { id=item.Id })" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
@@ -39,7 +39,7 @@
         </tbody>
         <tfoot>
             <tr class="visible-xs">
-                <td class="text-center"><strong>Total 1.99</strong></td>
+                <td class="text-center"><strong>@Url.Action("")</strong></td>
             </tr>
             <tr>
                 <td><a href="@Url.Action("Index", "Home")" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
@@ -63,3 +63,24 @@
         height : 80px;
     }
 </style>
+
+<script>
+    $(".RefreshQuantity").click(function () {
+        // Get the id from the link 
+        var recordToUpdate = $(this).attr("data-id");
+        var countToUpdate = $("#" + $(this).attr("txt-id")).val();
+        if (recordToUpdate != '') {        
+            // Perform the ajax post 
+            $.post("/Cart/UpdateCartCount", { "id": recordToUpdate, "cartCount": countToUpdate },
+                function (data) {
+                    // Successful requests get here 
+                    // Update the page elements                        
+                    if (data.ItemCount == 0) {
+                        $('#row-' + data. DeleteId).fadeOut('slow');
+                    }
+                    $('#update-message').text(data.Message);
+                    $('#cart-total').text(data.CartTotal);
+                    $('#cart-status').text('Cart (' + data.CartCount + ')');                
+                });
+        }
+</script>

@@ -1,4 +1,5 @@
-﻿using LogicLayer.Interfaces;
+﻿using DataAccess.Entities;
+using LogicLayer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +50,15 @@ namespace InternetShop.Controllers
         {
             _cartService.RemoveAll();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult UpdateCartCount(int id, int cartCount)
+        {
+            // Update the cart count 
+            int itemCount = _cartService.UpdateCartCount(id, cartCount);
+
+            return Json(itemCount);
         }
     }
 }

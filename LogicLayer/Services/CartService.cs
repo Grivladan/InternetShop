@@ -156,5 +156,29 @@ namespace LogicLayer.Services
 
          //   RemoveAll();
         }
+
+        public int UpdateCartCount(int id, int cartCount)
+        {
+            // Get the cart 
+            var cartItem = _unitOfWork.Carts.GetById(id); 
+
+            int itemCount = 0;
+
+            if (cartItem != null)
+            {
+                if (cartCount > 0)
+                {
+                    cartItem.Count = cartCount;
+                    itemCount = cartItem.Count;
+                }
+                else
+                {
+                    _unitOfWork.Carts.Delete(id);
+                }
+                // Save changes 
+                _unitOfWork.Save();
+            }
+            return itemCount;
+        }
     }
 }

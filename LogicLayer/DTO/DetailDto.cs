@@ -1,4 +1,6 @@
-﻿namespace LogicLayer.DTO
+﻿using DataAccess.Entities;
+
+namespace LogicLayer.DTO
 {
     public class DetailDto
     {

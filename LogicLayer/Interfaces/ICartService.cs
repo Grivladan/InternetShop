@@ -17,6 +17,7 @@ namespace LogicLayer.Interfaces
         void RemoveAll();
         decimal GetTotal();
         void CreateOrder(Order order);
+        int UpdateCartCount(int id, int cartCount);
 
         void Dispose();
     }
