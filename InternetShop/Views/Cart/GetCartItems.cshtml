@@ -26,11 +26,11 @@
                             </div>
                         </div>
                     </td>
-                    <td data-th="Price">@Html.DisplayFor(modelItem => item.Product.Price)</td>
+                    <td data-th="Price" id="price-@item.Id">@Html.DisplayFor(modelItem => item.Product.Price)</td>
                     <td data-th="Quantity">
-                        <input type="number" class="form-control text-center" value="1">
+                        <input type="number" class="form-control text-center" value="1" id="quantity-@item.Id">
                     </td>
-                    <td data-th="Subtotal" class="text-center">1.99</td>
+                    <td data-th="Subtotal" class="text-center" id="subtotal-@item.Id">1.99</td>
                     <td class="actions" data-th="">
                         <a href="#" class="btn btn-info btn-sm"><i class="fa fa-refresh RefreshQuantity" data-id="@item.Id"></i></a>
                         <a href="@Url.Action("RemoveFromCart", "Cart", new { id=item.Id })" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
@@ -67,13 +67,10 @@
 
 <script>
     $(document).ready(function () {
-        alert(123);
         $(".RefreshQuantity").click(function () {
             // Get the id from the link 
-            alert(123);
             var recordToUpdate = $(this).attr("data-id");
-            alert(recordToUpdate);
-            var countToUpdate = $("#" + $(this).attr("txt-id")).val();
+            var countToUpdate = +$("#quantity-" + $(this).attr("data-id")).val();
             if (recordToUpdate != '') {
                 // Perform the ajax post 
                 $.post("/Cart/UpdateCartCount", { "id": recordToUpdate, "cartCount": countToUpdate },
@@ -83,9 +80,9 @@
                         if (data.ItemCount == 0) {
                             $('#row-' + data.DeleteId).fadeOut('slow');
                         }
-                        $('#update-message').text(data.Message);
-                        $('#cart-total').text(data.CartTotal);
-                        $('#cart-status').text('Cart (' + data.CartCount + ')');
+
+                        var unitPrice = parseFloat($("#price-" + recordToUpdate).text());
+                        $("#subtotal-" + recordToUpdate).text(countToUpdate*unitPrice);
                     });
             }
         });
