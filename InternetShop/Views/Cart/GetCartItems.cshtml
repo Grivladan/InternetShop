@@ -28,9 +28,9 @@
                     </td>
                     <td data-th="Price" id="price-@item.Id">@Html.DisplayFor(modelItem => item.Product.Price)</td>
                     <td data-th="Quantity">
-                        <input type="number" class="form-control text-center" value="1" id="quantity-@item.Id">
+                        <input type="number" class="form-control text-center" value="@item.Count" id="quantity-@item.Id">
                     </td>
-                    <td data-th="Subtotal" class="text-center" id="subtotal-@item.Id">1.99</td>
+                    <td data-th="Subtotal" class="text-center" id="subtotal-@item.Id">@(item.Product.Price * item.Count)</td>
                     <td class="actions" data-th="">
                         <a href="#" class="btn btn-info btn-sm"><i class="fa fa-refresh RefreshQuantity" data-id="@item.Id"></i></a>
                         <a href="@Url.Action("RemoveFromCart", "Cart", new { id=item.Id })" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
@@ -45,7 +45,7 @@
             <tr>
                 <td><a href="@Url.Action("Index", "Home")" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
                 <td colspan="2" class="hidden-xs"></td>
-                <td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
+                <td class="hidden-xs text-center"><strong>Total </strong></td>
                 <td><a href="@Url.Action("CreateOrder", "Order")" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
             </tr>
         </tfoot>
