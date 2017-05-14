@@ -66,5 +66,13 @@ namespace LogicLayer.Services
             _unitOfWork.Orders.Update(orderItem);
             _unitOfWork.Save();
         }
+
+        public void ChangeStatus(int id, OrderStatus orderStatus)
+        {
+            var order = _unitOfWork.Orders.GetById(id);
+            order.OrderStatus = orderStatus;
+            _unitOfWork.Orders.Update(order);
+            _unitOfWork.Save();
+        }
     }
 }

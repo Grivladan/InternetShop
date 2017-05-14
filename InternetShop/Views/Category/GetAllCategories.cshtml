@@ -5,13 +5,13 @@
 }
 
 <p id="categories-list-name">Categories</p> 
-<div id="categories-list">
+<ul id="categories-list">
     @foreach(var item in Model)
     {
-        <p>@Ajax.ActionLink(@item.Name, "GetProductsByCategory", "Product",
-                             new { categoryId = item.Id}, new AjaxOptions { UpdateTargetId = "products-list" })</p>
+        <li>@Ajax.ActionLink(@item.Name, "GetProductsByCategory", "Product",
+                             new { categoryId = item.Id}, new AjaxOptions { UpdateTargetId = "products-list" })</li>
     }
-</div>
+</ul>
 
 <style>
     #categories-list-name{

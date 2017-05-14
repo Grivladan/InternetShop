@@ -5,13 +5,6 @@ using System.Collections.Generic;
 
 namespace DataAccess.Entities
 {
-    public enum OrderStatus
-    {
-        REGISTERED,
-        PAYED,
-        CANCELED
-    };
-
     public class Order : IEntity
     {
         public int Id { get; set; }

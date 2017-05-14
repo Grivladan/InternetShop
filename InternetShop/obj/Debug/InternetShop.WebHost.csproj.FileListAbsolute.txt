@@ -95,3 +95,7 @@ C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\Ninject.Web.Mvc.dll
 C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\WebActivatorEx.dll
 C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\Ninject.Web.Common.xml
 C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\Ninject.Web.Mvc.xml
+C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\PagedList.dll
+C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\PagedList.Mvc.dll
+C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\PagedList.xml
+C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\PagedList.Mvc.xml
