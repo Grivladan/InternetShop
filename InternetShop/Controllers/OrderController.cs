@@ -47,10 +47,10 @@ namespace InternetShop.Controllers
             return View(order);
         }
 
-        public ActionResult ChangeStatus(int id, OrderStatus orderStatus)
+        public ActionResult ChangeStatus(int id, OrderStatus OrderStatus)
         {
-            _orderService.ChangeStatus(id, orderStatus);
-            return RedirectToAction("Order", "GetAllOrders");
+            _orderService.ChangeStatus(id, OrderStatus);
+            return RedirectToAction("GetAllOrders", "Order");
         }
 
         public ActionResult GetUserOrders()

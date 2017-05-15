@@ -21,8 +21,13 @@
                 <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
                 <td>@Html.DisplayFor(modelItem => item.SecondName)</td>
                 <td>@Html.DisplayFor(modelItem => item.Date)</td>
-                <td>@Html.DropDownListFor(modelItem => item.OrderStatus, 
-                    new SelectList(Enum.GetValues(typeof(DataAccess.Entities.OrderStatus))))
+                <td>
+                    @using (Html.BeginForm("ChangeStatus", "Order"))
+                    {
+                        @Html.Hidden("id", item.Id)
+                        @Html.DropDownList("OrderStatus",
+                        new SelectList(Enum.GetValues(typeof(DataAccess.Entities.OrderStatus))), item.OrderStatus.ToString(), new { onchange = "this.form.submit()" })
+                    }
                 </td>
                 <td>@Html.DisplayFor(modelItem => item.Total)</td>
                 <td class="text-center">
