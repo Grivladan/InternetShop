@@ -1,15 +1,15 @@
-﻿using DataAccess.Entities;
+﻿using LogicLayer.DTO;
 using System.Collections.Generic;
 
 namespace LogicLayer.Interfaces
 {
     public interface ICategoryService
     {
-        Category GetCategoryById(int id);
-        void Create(Category category);
-        void Update(int id, Category category);
+        CategoryDto GetCategoryById(int id);
+        void Create(CategoryDto category);
+        void Update(int id, CategoryDto category);
         void Delete(int id);
-        IEnumerable<Category> GetAllCategories();
+        IEnumerable<CategoryDto> GetAllCategories();
 
         void Dispose();
     }
