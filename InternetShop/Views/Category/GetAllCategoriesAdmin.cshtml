@@ -1,0 +1,43 @@
+﻿@model IEnumerable<DataAccess.Entities.Category>
+
+<div class="container">
+    <table class="table table-striped custab">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Id)</th>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td class="text-center">
+                    <a class='btn btn-info btn-xs' href="@Url.Action("Edit","Category", new { id = item.Id})"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                    <a class="btn btn-danger btn-xs" href="@Url.Action("Delete","Product", new { id = item.Id})"><span class="glyphicon glyphicon-remove"></span> Del</a>
+                </td>
+            </tr>
+        }
+    </table>
+    <p>
+        <a href="/Category/CreateCategory" class="btn btn-primary btn-xs"><b>+</b> Add new category</a>
+    </p>
+</div>
+
+<style>
+    .custab {
+        border: 1px solid #ccc;
+        padding: 5px;
+        margin: 5% 0;
+        box-shadow: 3px 3px 2px #ccc;
+        transition: 0.5s;
+    }
+
+        .custab:hover {
+            box-shadow: 3px 3px 0px transparent;
+            transition: 0.5s;
+        }
+</style>

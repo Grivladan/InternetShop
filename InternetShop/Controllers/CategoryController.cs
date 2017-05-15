@@ -22,6 +22,12 @@ namespace InternetShop.Controllers
             return View(categories); 
         }
 
+        public ActionResult GetAllCategoriesAdmin()
+        {
+            var categories = _categoryService.GetAllCategories();
+            return View(categories);
+        }
+
         public ActionResult GetCategoryById(int id)
         {
             var category = _categoryService.GetCategoryById(id);
@@ -39,6 +45,21 @@ namespace InternetShop.Controllers
             if (ModelState.IsValid)
             {
                 _categoryService.Create(category);
+            }
+            return View(category);
+        }
+
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                _categoryService.Update(category.Id, category);
             }
             return View(category);
         }

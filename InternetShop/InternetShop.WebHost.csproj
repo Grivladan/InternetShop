@@ -370,6 +370,7 @@
     <Content Include="Views\Admin\GetBlackList.cshtml" />
     <Content Include="Views\Order\GetOrderById.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Category\GetAllCategoriesAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\InternetShop.DataAccess.csproj">
