@@ -39,6 +39,12 @@ namespace InternetShop.Controllers
             return View();
         }
 
+        public ActionResult Delete(int id)
+        {
+            _categoryService.Delete(id);
+            return RedirectToAction("GetAllCategoriesAdmin", "Category");
+        }
+
         [HttpPost]
         public ActionResult CreateCategory(Category category)
         {
@@ -49,9 +55,10 @@ namespace InternetShop.Controllers
             return View(category);
         }
 
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            return View();
+            var category = _categoryService.GetCategoryById(id);
+            return View(category);
         }
 
         [HttpPost]
