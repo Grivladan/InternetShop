@@ -99,3 +99,5 @@ C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\PagedList.dll
 C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\PagedList.Mvc.dll
 C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\PagedList.xml
 C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\PagedList.Mvc.xml
+C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\AutoMapper.dll
+C:\Users\Vladyslav\Desktop\InternetShop\InternetShop\bin\AutoMapper.xml

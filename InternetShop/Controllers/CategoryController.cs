@@ -23,7 +23,7 @@ namespace InternetShop.Controllers
         {
             var categoriesDto = _categoryService.GetAllCategories();
             Mapper.Initialize(cfg => cfg.CreateMap<CategoryDto, CategoryViewModel>());
-            var categoriesViewModel = Mapper.Map<IEnumerable<CategoryDto>, IEnumerable<Category>>(categoriesDto);
+            var categoriesViewModel = Mapper.Map<IEnumerable<CategoryDto>, IEnumerable<CategoryViewModel>>(categoriesDto);
 
             return View(categoriesViewModel); 
         }
@@ -32,7 +32,7 @@ namespace InternetShop.Controllers
         {
             var categoriesDto = _categoryService.GetAllCategories();
             Mapper.Initialize(cfg => cfg.CreateMap<CategoryDto, CategoryViewModel>());
-            var categoriesViewModel = Mapper.Map<IEnumerable<CategoryDto>, IEnumerable<Category>>(categoriesDto);
+            var categoriesViewModel = Mapper.Map<IEnumerable<CategoryDto>, IEnumerable<CategoryViewModel>>(categoriesDto);
 
             return View(categoriesViewModel);
         }

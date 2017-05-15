@@ -15,3 +15,5 @@ C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\bin\Debug\Microsoft.AspNet.Id
 C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\bin\Debug\Ninject.Extensions.Factory.xml
 C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\bin\Debug\Castle.Core.xml
 C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\obj\Debug\InternetShop.Logic.csprojResolveAssemblyReference.cache
+C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\bin\Debug\AutoMapper.dll
+C:\Users\Vladyslav\Desktop\InternetShop\LogicLayer\bin\Debug\AutoMapper.xml
