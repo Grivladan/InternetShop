@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using DataAccess.Entities;
 using LogicLayer.Interfaces;
 using DataAccess.Interfaces;
+using LogicLayer.DTO;
+using AutoMapper;
 
 namespace LogicLayer.Services
 {
@@ -14,8 +16,10 @@ namespace LogicLayer.Services
             _unitOfWork = unitOfWork;
         }
 
-        public void Create(Category category)
+        public void Create(CategoryDto categoryDto)
         {
+            Mapper.Initialize(cfg => cfg.CreateMap<CategoryDto, Category>());
+            var category = Mapper.Map<CategoryDto, Category>(categoryDto);
             _unitOfWork.Categories.Create(category);
             _unitOfWork.Save();
         }
@@ -25,22 +29,26 @@ namespace LogicLayer.Services
             _unitOfWork.Dispose();
         }
 
-        public IEnumerable<Category> GetAllCategories()
+        public IEnumerable<CategoryDto> GetAllCategories()
         {
+            Mapper.Initialize(cfg => cfg.CreateMap<Category, CategoryDto>());
             var categories = _unitOfWork.Categories.GetAll();
-            return categories;
+            return Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryDto>>(categories);
         }
 
-        public Category GetCategoryById(int id)
+        public void Update(int id, CategoryDto categoryDto)
         {
-            Category category = _unitOfWork.Categories.GetById(id);
-            return category;
-        }
-
-        public void Update(int id, Category category)
-        {
+            Mapper.Initialize(cfg => cfg.CreateMap<CategoryDto, Category>());
+            var category = Mapper.Map<CategoryDto, Category>(categoryDto);
             _unitOfWork.Categories.Update(category);
             _unitOfWork.Save();
+        }
+
+        public CategoryDto GetCategoryById(int id)
+        {
+            var category = _unitOfWork.Categories.GetById(id);
+            Mapper.Initialize(cfg => cfg.CreateMap<Category, CategoryDto>());
+            return Mapper.Map<Category, CategoryDto>(category);
         }
 
         public void Delete(int id)
