@@ -9,7 +9,7 @@
 </div>
 
 <div class="col-md-10">
-    <div class = "row">
+    <div class = "row" id="control-panel">
         @using (Ajax.BeginForm("SortProduct", "Product", null, 
             new AjaxOptions { UpdateTargetId = "products-list", OnComplete = "OnComplete" }, new { id = "sortForm" }))
         { 
@@ -28,3 +28,11 @@
         @{Html.RenderAction("GetProducts", "Product");}
     </div>
 </div>
+
+<style>
+    #control-panel {
+         border : 1px solid #d3d3d3;
+         padding : 10px;
+         margin-top : 10px; 
+    }
+</style>

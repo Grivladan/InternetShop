@@ -8,29 +8,38 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="col-md-4 product-cell">
+        <div class="col-md-3 product-cell">
             <img src="@Url.Action("ProductImage", "Product", new { id = item.Id})" id="productImage"/>
             <p>@Html.DisplayFor(modelItem => item.Name)</p>
             <p>@Html.DisplayFor(modelItem => item.Category.Name)</p>
-            <p>@Html.DisplayFor(modelItem => item.Price)</p>
-            <a href="@Url.Action("AddToCart", "Cart", new { id = item.Id })" class="btn btn-default">
-                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-                ADD TO CART
-            </a>
+            <p>@Html.TextAreaFor(modelItem => item.Description, new { @class = "form-control" })</p>
+            <p>
+                <div>
+                    <a href="@Url.Action("AddToCart", "Cart", new { id = item.Id })" class="btn btn-default">
+                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                        ADD TO CART
+                    </a>
+                    <span class="price">@Html.DisplayFor(modelItem => item.Price)</span>
+                </div>
+            </p>
         </div>
     }
 </div>
 
 <style>
     #productImage{
-        float:left;
+        clear:both;
         height: 150px;
-        width: 140px;
+        width: 200px;
         margin: 10px;
     }
 
     .product-cell{
         border : 1px solid #d3d3d3;
         padding : 10px;
+    }
+
+    .price{
+        float:right;
     }
 </style>
