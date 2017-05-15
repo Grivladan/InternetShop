@@ -51,6 +51,7 @@ namespace InternetShop.Controllers
             if (ModelState.IsValid)
             {
                 _categoryService.Create(category);
+                return RedirectToAction("GetAllCategoriesAdmin", "Category");
             }
             return View(category);
         }
@@ -67,6 +68,7 @@ namespace InternetShop.Controllers
             if (ModelState.IsValid)
             {
                 _categoryService.Update(category.Id, category);
+                return RedirectToAction("GetAllCategoriesAdmin", "Category");
             }
             return View(category);
         }

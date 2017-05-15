@@ -371,6 +371,7 @@
     <Content Include="Views\Order\GetOrderById.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Category\GetAllCategoriesAdmin.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\InternetShop.DataAccess.csproj">

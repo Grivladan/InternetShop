@@ -48,9 +48,6 @@ namespace LogicLayer.Services
 
         public void Update(int id, Product product)
         {
-            var productItem = _unitOfWork.Products.GetById(id);
-            if (productItem == null)
-                throw new Exception();
             _unitOfWork.Products.Update(product);
             _unitOfWork.Save();
         }

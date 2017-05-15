@@ -39,8 +39,7 @@ namespace LogicLayer.Services
 
         public void Update(int id, Category category)
         {
-            Category categoryItem = _unitOfWork.Categories.GetById(id);
-            _unitOfWork.Categories.Update(categoryItem);
+            _unitOfWork.Categories.Update(category);
             _unitOfWork.Save();
         }
 
