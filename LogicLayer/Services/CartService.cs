@@ -106,7 +106,7 @@ namespace LogicLayer.Services
 
         public void RemoveAll()
         {
-            var cartsId = _unitOfWork.Carts.Query.Select(x => x.Id);
+            var cartsId = _unitOfWork.Carts.Query.Select(x => x.Id).ToList();
             foreach (var id in cartsId)
                 _unitOfWork.Carts.Delete(id);
             _unitOfWork.Save();
@@ -143,7 +143,7 @@ namespace LogicLayer.Services
             _unitOfWork.Orders.Create(order);
             _unitOfWork.Save();
 
-         //   RemoveAll();
+            RemoveAll();
         }
 
         public int UpdateCartCount(int id, int cartCount)
