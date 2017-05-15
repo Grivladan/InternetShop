@@ -25,7 +25,7 @@
                     @using (Html.BeginForm("ChangeStatus", "Order"))
                     {
                         @Html.Hidden("id", item.Id)
-                        @Html.DropDownList("OrderStatus",
+                        @Html.DropDownList("orderStatus",
                         new SelectList(Enum.GetValues(typeof(DataAccess.Entities.OrderStatus))), item.OrderStatus.ToString(), new { onchange = "this.form.submit()" })
                     }
                 </td>

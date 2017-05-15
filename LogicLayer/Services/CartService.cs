@@ -55,19 +55,8 @@ namespace LogicLayer.Services
         {
             var cart = _unitOfWork.Carts.Query.Single(x => x.SessionId == sessionId && x.Id == id);
             int cartItemCount = 0;
-            if (cart != null)
-            {
-                if(cart.Count > 1)
-                {
-                    cart.Count--;
-                    cartItemCount = cart.Count;
-                    Update(id, cart);
-                }
-                else
-                {
-                    Remove(id);
-                }
-            }
+            _unitOfWork.Carts.Delete(id);
+            _unitOfWork.Save();
             return cartItemCount;
         }
 
