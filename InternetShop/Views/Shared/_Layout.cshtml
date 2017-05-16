@@ -101,10 +101,6 @@
 
 <script>
     $(document).ready(function () {
-        //$(".categories").hover(function () {
-
-        //});
-
         $.getJSON(
             "@Url.Action("GetCartCount", "Cart")",
             function(data) {
@@ -112,31 +108,6 @@
                     document.getElementById("cartItemsCounter").hidden = false;
                     $("#cartItemsCounter").html(data.countCartItems);
                 }
-        });
-
-        $("#searchString").autocomplete({
-            source: function (request, response) {
-                $.ajax({
-                    url: "/Product/AutocompleteSearch",
-                    type: "POST",
-                    dataType: "json",
-                    minLength: 1,
-                    data: { "searchString": request.term },
-                    success: function (data) {
-                        response($.map(data, function (item) {
-                            return { label: item.name, value: item.name };
-                        }))
-                    }
-                })
-            },
-            messages: {
-                noResults: "",
-                results: function (resultsCount) { }
-            }
-        });
-
-        $("#shopping-cart").on("click", function () {
-            
         });
     });
 </script>
