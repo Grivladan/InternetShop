@@ -23,12 +23,6 @@ namespace LogicLayer.Services
             _unitOfWork = unitOfWork;
         }
 
-        public void Create(Cart cart)
-        {
-            _unitOfWork.Carts.Create(cart);
-            _unitOfWork.Save(); 
-        }
-
         public void AddToCart(int id)
         {
             var product = _unitOfWork.Products.GetById(id);
@@ -42,13 +36,14 @@ namespace LogicLayer.Services
                     Count = 1,
                     Date = DateTime.Now
                 };
-                Create(cart);
+                _unitOfWork.Carts.Create(cart);
             }
             else
             {
                 cart.Count++;
-                Update(cart.Id, cart);
+                _unitOfWork.Carts.Update(cart);
             }
+            _unitOfWork.Save();
         }
 
         public int RemoveFromCart(int id)
@@ -65,24 +60,6 @@ namespace LogicLayer.Services
             _unitOfWork.Dispose();
         }
 
-        public IEnumerable<Cart> GetAll()
-        {
-            var carts = _unitOfWork.Carts.GetAll();
-            return carts;
-        }
-
-        public Cart GetById(int id)
-        {
-            var cart = _unitOfWork.Carts.GetById(id);
-            return cart;
-        }
-
-        public void Remove(int id)
-        {
-            _unitOfWork.Carts.Delete(id);
-            _unitOfWork.Save();
-        }
-
         public IEnumerable<Cart> GetAllCartItems()
         {
             var carts = _unitOfWork.Carts.Query.Where(x => x.SessionId == sessionId).ToList();
@@ -93,15 +70,6 @@ namespace LogicLayer.Services
         {
             var carts = GetAllCartItems();
             return carts.Sum(x => x.Count);
-        }
-
-        public void Update(int id, Cart cart)
-        {
-            var cartItem = _unitOfWork.Carts.GetById(id);
-            if (cartItem == null)
-                throw new InvalidOperationException();
-            _unitOfWork.Carts.Update(cart);
-            _unitOfWork.Save();
         }
 
         public void RemoveAll()

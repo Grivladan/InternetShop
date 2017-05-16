@@ -5,14 +5,9 @@ namespace LogicLayer.Interfaces
 {
     public interface ICartService
     {
-        IEnumerable<Cart> GetAll();
-        Cart GetById(int id);
-        void Create(Cart cart);
-        void AddToCart(int id);
         IEnumerable<Cart> GetAllCartItems();
+        void AddToCart(int id);
         int GetCartCount();
-        void Update(int id, Cart cart);
-        void Remove(int id);
         int RemoveFromCart(int id);
         void RemoveAll();
         decimal GetTotal();
