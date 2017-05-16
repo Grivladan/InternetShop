@@ -1,17 +1,45 @@
-﻿
-@{
-    Layout = null;
-}
+﻿@model IEnumerable<DataAccess.Entities.Order>
 
-<!DOCTYPE html>
+<div class="container">
+    <div class="col-md-10 col-md-offset-2">
+        <table class="table table-striped custab">
+            <thead>
+                <tr>
+                    <th style="width:15%">@Html.DisplayNameFor(model => model.Id)</th>
+                    <th style="width:30%">@Html.DisplayNameFor(model => model.Date)</th>
+                    <th style="width:30%">@Html.DisplayNameFor(model => model.OrderStatus)</th>
+                    <th style="width:25%">@Html.DisplayNameFor(model => model.Total)</th>
+                    <th></th>
+                </tr>
+            </thead>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>GetUserOrders</title>
-</head>
-<body>
-    <div> 
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Date)</td>
+                    <td>@Html.DisplayFor(modelItem => item.OrderStatus)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Total)</td>
+                    <td class="text-center">
+                        <a class='btn btn-info btn-xs' href="@Url.Action("GetOrderById", "Order", new { id = item.Id}, null)"><span class="glyphicon glyphicon-info-sign"></span> Details</a>
+                    </td>
+                </tr>
+            }
+        </table>
     </div>
-</body>
-</html>
+</div>
+
+<style>
+    .custab {
+        border: 1px solid #ccc;
+        padding: 5px;
+        margin: 5% 0;
+        box-shadow: 3px 3px 2px #ccc;
+        transition: 0.5s;
+    }
+
+        .custab:hover {
+            box-shadow: 3px 3px 0px transparent;
+            transition: 0.5s;
+        }
+</style>
