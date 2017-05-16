@@ -5,13 +5,13 @@
     ViewBag.Title = "GetProducts";
 }
 
-<div class="row">
+<div class="row" id="products">
     @foreach (var item in Model)
     {
         <div class="col-md-3 product-cell">
-            <img src="@Url.Action("ProductImage", "Product", new { id = item.Id})" id="productImage"/>
+            <img src="@Url.Action("ProductImage", "Product", new { id = item.Id})" class="productImage"/>
             <p>@Html.DisplayFor(modelItem => item.Name)</p>
-            <p>@Html.DisplayFor(modelItem => item.Category.Name)</p>
+            <p>Category: &nbsp; @Html.DisplayFor(modelItem => item.Category.Name)</p>
             <p>@Html.TextAreaFor(modelItem => item.Description, new { @class = "form-control" })</p>
             <p>
                 <div>
@@ -27,7 +27,7 @@
 </div>
 
 <style>
-    #productImage{
+    .productImage{
         clear:both;
         height: 150px;
         width: 200px;
@@ -41,5 +41,9 @@
 
     .price{
         float:right;
+    }
+
+    #products{
+        padding-left : 12px;
     }
 </style>
