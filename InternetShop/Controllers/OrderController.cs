@@ -1,6 +1,7 @@
 ﻿using DataAccess.Entities;
 using DataAccess.Interfaces;
 using LogicLayer.Interfaces;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,7 +56,9 @@ namespace InternetShop.Controllers
 
         public ActionResult GetUserOrders()
         {
-            return View();
+            string userId = User.Identity.GetUserId();
+            var userOrders = _orderService.GetUserOrders(userId);
+            return View(userOrders);
         }
     }
 }

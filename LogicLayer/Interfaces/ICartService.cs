@@ -8,7 +8,7 @@ namespace LogicLayer.Interfaces
         IEnumerable<Cart> GetAllCartItems();
         void AddToCart(int id);
         int GetCartCount();
-        int RemoveFromCart(int id);
+        void RemoveFromCart(int id);
         void RemoveAll();
         decimal GetTotal();
         void CreateOrder(Order order);

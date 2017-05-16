@@ -46,13 +46,10 @@ namespace LogicLayer.Services
             _unitOfWork.Save();
         }
 
-        public int RemoveFromCart(int id)
+        public void RemoveFromCart(int id)
         {
-            var cart = _unitOfWork.Carts.Query.Single(x => x.SessionId == sessionId && x.Id == id);
-            int cartItemCount = 0;
             _unitOfWork.Carts.Delete(id);
             _unitOfWork.Save();
-            return cartItemCount;
         }
 
         public void Dispose()

@@ -9,6 +9,7 @@ namespace LogicLayer.Interfaces
         void Update(int id, Order order);
         void ChangeStatus(int id, OrderStatus orderStatus);
         IEnumerable<Order> GetAll();
+        IEnumerable<Order> GetUserOrders(string userId);
         Order GetById(int id);
 
         void Dispose();

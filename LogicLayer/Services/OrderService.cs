@@ -74,5 +74,11 @@ namespace LogicLayer.Services
             _unitOfWork.Orders.Update(order);
             _unitOfWork.Save();
         }
+
+        public IEnumerable<Order> GetUserOrders(string userId)
+        {
+            var orders = _unitOfWork.Orders.Query.Where(x => x.OwnerId == userId);
+            return orders;
+        }
     }
 }
