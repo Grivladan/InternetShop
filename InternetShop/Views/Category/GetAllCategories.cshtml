@@ -4,18 +4,22 @@
     Layout = null;
 }
 
-<p id="categories-list-name">Categories</p> 
-<ul id="categories-list">
-    @foreach(var item in Model)
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<ul class="nav nav-pills nav-stacked" id="category-list">
+    <li class="active"><a href="#">Categories</a></li>
+    @foreach (var item in Model)
     {
-        <li>@Ajax.ActionLink(@item.Name, "GetProductsByCategory", "Product",
-                             new { categoryId = item.Id}, new AjaxOptions { UpdateTargetId = "products-list" })</li>
+        <li>
+            @Ajax.ActionLink(@item.Name, "GetProductsByCategory", "Product",
+                             new { categoryId = item.Id }, new AjaxOptions { UpdateTargetId = "products-list" })
+        </li>
     }
 </ul>
 
 <style>
-    #categories-list-name{
-        background-color:green;
+    #category-list{
+        padding:10px;
     }
 </style>
 
