@@ -30,6 +30,7 @@ namespace InternetShop.Controllers
         {
             if (ModelState.IsValid)
             {
+                order.OwnerId = User.Identity.GetUserId();
                 _cartService.CreateOrder(order);
                 return RedirectToAction("Index","Home");
             }
