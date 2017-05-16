@@ -67,6 +67,7 @@ namespace InternetShop.Controllers
                 var productDto = Mapper.Map<ProductViewModel, ProductDto>(productViewModel);
 
                 _productService.Create(productDto);
+                return RedirectToAction("GetAllProductsAdmin", "Admin");
             }
             ViewBag.Categories = _categoryService.GetAllCategories();
             return View(productViewModel);
@@ -85,13 +86,6 @@ namespace InternetShop.Controllers
             Mapper.Initialize(cfg => cfg.CreateMap<ProductDto, ProductViewModel>());
             var productsViewModel = Mapper.Map<IEnumerable<ProductDto>, IEnumerable<ProductViewModel>>(productsDto);
             return View("GetProducts", productsViewModel);
-        }
-
-        public ActionResult AutocompleteSearch(string searchString)
-        {
-            var products = _productService.Search(searchString);
-
-            return Json(products.ToList(), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult SortProduct(string sortOrder)
@@ -123,26 +117,28 @@ namespace InternetShop.Controllers
 
         public ActionResult Edit(int id)
         {
-            var product = _productService.GetById(id);
-            if(product == null)
-            {
-                return HttpNotFound();
-            }
+            var productDto = _productService.GetById(id);
 
-            return View(product);
+            Mapper.Initialize(cfg => cfg.CreateMap<ProductDto, ProductViewModel>());
+            var productViewModel = Mapper.Map<ProductDto, ProductViewModel>(productDto);
+
+            ViewBag.Categories = _categoryService.GetAllCategories();
+            return View(productViewModel);
         }
 
         [HttpPost]
         public ActionResult Edit(ProductViewModel productViewModel)
         {
             if (ModelState.IsValid)
-            {
+            { 
                 Mapper.Initialize(cfg => cfg.CreateMap<ProductViewModel, ProductDto>());
                 var productDto = Mapper.Map<ProductViewModel, ProductDto>(productViewModel);
-                _productService.Update(productViewModel.Id, productDto);
+
+                _productService.Update(productDto.Id, productDto);
                 return RedirectToAction("GetAllProductsAdmin", "Admin");
             }
 
+            ViewBag.Categories = _categoryService.GetAllCategories();
             return View(productViewModel);
         }
 
