@@ -101,7 +101,7 @@ namespace InternetShop.Controllers
             return PartialView("GetProducts", productsViewModel);
         }
 
-        public ActionResult GetProductsByCategory(int categoryId = 0)
+        public ActionResult GetProductsByCategory(int categoryId)
         {
             var productsDto = _productService.GetProductsByCategory(categoryId);
 

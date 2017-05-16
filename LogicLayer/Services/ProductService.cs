@@ -22,7 +22,7 @@ namespace LogicLayer.Services
             Mapper.Initialize(cfg => cfg.CreateMap<ProductDto, Product>());
             var product = Mapper.Map<ProductDto, Product>(productDto);
             if (product.Category == null)
-                product.Category = _unitOfWork.Categories.GetById(product.CategoryId??0);
+                product.Category = _unitOfWork.Categories.GetById(product.CategoryId);
             _unitOfWork.Products.Create(product);
             _unitOfWork.Save();
         }
@@ -63,8 +63,8 @@ namespace LogicLayer.Services
         public IEnumerable<ProductDto> GetProductsByCategory(int categoryId)
         {
             Mapper.Initialize(cfg => cfg.CreateMap<Product, ProductDto>());
-            var products = _unitOfWork.Products.Query.Where(x => x.Category.Id == categoryId);
-            return Mapper.Map<IEnumerable<Product>, IEnumerable<ProductDto>>(products); 
+            var products = _unitOfWork.Products.Query.Where(x => x.Category.Id == categoryId).ToList();
+            return Mapper.Map<IEnumerable<Product>, IList<ProductDto>>(products); 
         }
 
         public IEnumerable<ProductDto> Sort(string sortOrder)
