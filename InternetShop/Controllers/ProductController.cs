@@ -42,29 +42,32 @@ namespace InternetShop.Controllers
         [HttpPost]
         public ActionResult CreateProduct([Bind(Exclude = "Image")]ProductViewModel productViewModel)
         {
-            byte[] imageData = null;
-
-            if (Request.Files.Count > 0)
+            if (ModelState.IsValid)
             {
-                HttpPostedFileBase poImgFile = Request.Files["Image"];
-                if (poImgFile != null && poImgFile.ContentLength > 0)
+                byte[] imageData = null;
+
+                if (Request.Files.Count > 0)
                 {
-                    using (var binary = new BinaryReader(poImgFile.InputStream))
+                    HttpPostedFileBase poImgFile = Request.Files["Image"];
+                    if (poImgFile != null && poImgFile.ContentLength > 0)
                     {
-                        imageData = binary.ReadBytes(poImgFile.ContentLength);
+                        using (var binary = new BinaryReader(poImgFile.InputStream))
+                        {
+                            imageData = binary.ReadBytes(poImgFile.ContentLength);
+                        }
                     }
                 }
+
+                if (imageData != null)
+                {
+                    productViewModel.Image = imageData;
+                }
+
+                Mapper.Initialize(cfg => cfg.CreateMap<ProductViewModel, ProductDto>());
+                var productDto = Mapper.Map<ProductViewModel, ProductDto>(productViewModel);
+
+                _productService.Create(productDto);
             }
-
-            if (imageData != null)
-            {
-                productViewModel.Image = imageData;
-            }
-
-            Mapper.Initialize(cfg => cfg.CreateMap<ProductViewModel, ProductDto>());
-            var productDto = Mapper.Map<ProductViewModel, ProductDto>(productViewModel);
-
-            _productService.Create(productDto);
             ViewBag.Categories = _categoryService.GetAllCategories();
             return View(productViewModel);
         }
