@@ -1,4 +1,5 @@
 ﻿using DataAccess.Entities;
+using LogicLayer.DTO;
 using System.Collections.Generic;
 
 namespace LogicLayer.Interfaces
@@ -11,7 +12,7 @@ namespace LogicLayer.Interfaces
         void RemoveFromCart(int id);
         void RemoveAll();
         decimal GetTotal();
-        void CreateOrder(Order order);
+        void CreateOrder(OrderDto orderDto);
         int UpdateCartCount(int id, int cartCount);
 
         void Dispose();

@@ -16,7 +16,7 @@ namespace LogicLayer.DTO
         public string Country { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
         public decimal Total { get; set; }
         public OrderStatus OrderStatus { get; set; }
 

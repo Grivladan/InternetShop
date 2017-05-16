@@ -1,11 +1,11 @@
-﻿using DataAccess.Interfaces;
+﻿using DataAccess.Entities;
 using InternetShop.DataAccess.Entities;
 using System;
 using System.Collections.Generic;
 
-namespace DataAccess.Entities
+namespace InternetShop.ViewModels
 {
-    public class Order : IEntity
+    public class OrderViewModel
     {
         public int Id { get; set; }
         public string Username { get; set; }
@@ -23,12 +23,5 @@ namespace DataAccess.Entities
         public virtual ApplicationUser Owner { get; set; }
         public string OwnerId { get; set; }
         public virtual ICollection<Detail> Details { get; set; }
-
-        public Order()
-        {
-            Date = DateTime.Now;
-            OrderStatus = OrderStatus.REGISTERED;
-            Details =new List<Detail>();
-        }
     }
 }

@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DataAccess.Entities;
 using LogicLayer.Interfaces;
 using DataAccess.Interfaces;
 using System.Linq;
 using System.Web;
+using LogicLayer.DTO;
+using AutoMapper;
 
 namespace LogicLayer.Services
 {
@@ -16,8 +17,11 @@ namespace LogicLayer.Services
             _unitOfWork = unitOfWork;
         }
 
-        public void Create(Order order)
+        public void Create(OrderDto orderDto)
         {
+            Mapper.Initialize(cfg => cfg.CreateMap<OrderDto, Order>());
+            var order = Mapper.Map<OrderDto, Order>(orderDto);
+
             var cartItems = _unitOfWork.Carts.Query.Where(x => x.SessionId == HttpContext.Current.Session.SessionID);
             decimal orderTotal = 0;
             foreach(var item in cartItems)
@@ -46,24 +50,26 @@ namespace LogicLayer.Services
             _unitOfWork.Dispose();
         }
 
-        public IEnumerable<Order> GetAll()
+        public IEnumerable<OrderDto> GetAll()
         {
+            Mapper.Initialize(cfg => cfg.CreateMap<Order, OrderDto>());
             var orders = _unitOfWork.Orders.GetAll();
-            return orders;
+            return Mapper.Map<IEnumerable<Order>, IEnumerable<OrderDto>>(orders);
         }
 
-        public Order GetById(int id)
+        public OrderDto GetById(int id)
         {
+            Mapper.Initialize(cfg => cfg.CreateMap<Order, OrderDto>());
             var order = _unitOfWork.Orders.GetById(id);
-            return order;
+            return Mapper.Map<Order, OrderDto>(order);
         }
 
-        public void Update(int id, Order order)
+        public void Update(int id, OrderDto orderDto)
         {
-            var orderItem = _unitOfWork.Orders.GetById(id);
-            if (orderItem == null)
-                throw new ArgumentNullException();
-            _unitOfWork.Orders.Update(orderItem);
+            Mapper.Initialize(cfg => cfg.CreateMap<OrderDto, Order>());
+            var order = Mapper.Map<OrderDto, Order>(orderDto);
+
+            _unitOfWork.Orders.Update(order);
             _unitOfWork.Save();
         }
 
@@ -75,10 +81,11 @@ namespace LogicLayer.Services
             _unitOfWork.Save();
         }
 
-        public IEnumerable<Order> GetUserOrders(string userId)
+        public IEnumerable<OrderDto> GetUserOrders(string userId)
         {
+            Mapper.Initialize(cfg => cfg.CreateMap<Order, OrderDto>());
             var orders = _unitOfWork.Orders.Query.Where(x => x.OwnerId == userId);
-            return orders;
+            return Mapper.Map<IEnumerable<Order>, IEnumerable<OrderDto>>(orders);
         }
     }
 }

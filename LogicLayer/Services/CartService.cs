@@ -5,6 +5,8 @@ using DataAccess.Interfaces;
 using LogicLayer.Interfaces;
 using System.Web;
 using System.Linq;
+using AutoMapper;
+using LogicLayer.DTO;
 
 namespace LogicLayer.Services
 {
@@ -84,8 +86,11 @@ namespace LogicLayer.Services
             return sum ?? decimal.Zero;
         }
 
-        public void CreateOrder(Order order)
+        public void CreateOrder(OrderDto orderDto)
         {
+            Mapper.Initialize(cfg => cfg.CreateMap<OrderDto, Order>());
+            var order = Mapper.Map<OrderDto, Order>(orderDto);
+
             var cartItems = GetAllCartItems();
             decimal orderTotal = 0;
             foreach (var item in cartItems)

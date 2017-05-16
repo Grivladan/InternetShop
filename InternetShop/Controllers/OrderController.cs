@@ -1,5 +1,8 @@
-﻿using DataAccess.Entities;
+﻿using AutoMapper;
+using DataAccess.Entities;
 using DataAccess.Interfaces;
+using InternetShop.ViewModels;
+using LogicLayer.DTO;
 using LogicLayer.Interfaces;
 using Microsoft.AspNet.Identity;
 using System;
@@ -26,27 +29,36 @@ namespace InternetShop.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateOrder(Order order)
+        public ActionResult CreateOrder(OrderViewModel orderViewModel)
         {
             if (ModelState.IsValid)
             {
-                order.OwnerId = User.Identity.GetUserId();
-                _cartService.CreateOrder(order);
+                Mapper.Initialize(cfg => cfg.CreateMap<OrderViewModel, OrderDto>());
+                var orderDto = Mapper.Map<OrderViewModel, OrderDto>(orderViewModel);
+
+                orderDto.OwnerId = User.Identity.GetUserId();
+                _cartService.CreateOrder(orderDto);
                 return RedirectToAction("Index","Home");
             }
-            return View(order);
+            return View(orderViewModel);
         }
 
         public ActionResult GetAllOrders()
         {
-            var orders = _orderService.GetAll();
-            return View(orders);
+            var ordersDto = _orderService.GetAll();
+
+            Mapper.Initialize(cfg => cfg.CreateMap<OrderDto, OrderViewModel>());
+            var ordersViewModel = Mapper.Map<IEnumerable<OrderDto>,IEnumerable<OrderViewModel>>(ordersDto);
+            return View(ordersViewModel);
         }
 
         public ActionResult GetOrderById(int id)
         {
-            var order = _orderService.GetById(id);
-            return View(order);
+            var orderDto = _orderService.GetById(id);
+
+            Mapper.Initialize(cfg => cfg.CreateMap<OrderDto, OrderViewModel>());
+            var orderViewModel = Mapper.Map<OrderDto, OrderViewModel>(orderDto);
+            return View(orderViewModel);
         }
 
         public ActionResult ChangeStatus(int id, OrderStatus orderStatus)
@@ -58,8 +70,11 @@ namespace InternetShop.Controllers
         public ActionResult GetUserOrders()
         {
             string userId = User.Identity.GetUserId();
-            var userOrders = _orderService.GetUserOrders(userId);
-            return View(userOrders);
+            var userOrdersDto = _orderService.GetUserOrders(userId);
+
+            Mapper.Initialize(cfg => cfg.CreateMap<OrderDto, OrderViewModel>());
+            var userOrdersViewModel = Mapper.Map<IEnumerable<OrderDto>, IEnumerable<OrderViewModel>>(userOrdersDto);
+            return View(userOrdersViewModel);
         }
     }
 }

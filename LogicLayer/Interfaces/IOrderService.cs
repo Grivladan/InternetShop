@@ -1,16 +1,17 @@
 ﻿using DataAccess.Entities;
+using LogicLayer.DTO;
 using System.Collections.Generic;
 
 namespace LogicLayer.Interfaces
 {
     public interface IOrderService
     {
-        void Create(Order order);
-        void Update(int id, Order order);
+        void Create(OrderDto orderDto);
+        void Update(int id, OrderDto orderDto);
         void ChangeStatus(int id, OrderStatus orderStatus);
-        IEnumerable<Order> GetAll();
-        IEnumerable<Order> GetUserOrders(string userId);
-        Order GetById(int id);
+        IEnumerable<OrderDto> GetAll();
+        IEnumerable<OrderDto> GetUserOrders(string userId);
+        OrderDto GetById(int id);
 
         void Dispose();
     }
