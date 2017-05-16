@@ -1,4 +1,6 @@
-﻿using DataAccess.Entities;
+﻿using AutoMapper;
+using InternetShop.ViewModels;
+using LogicLayer.DTO;
 using LogicLayer.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -23,8 +25,12 @@ namespace InternetShop.Controllers
 
         public ActionResult GetProducts()
         {
-            var products = _productService.GetAll();
-            return View(products);
+            var productsDto = _productService.GetAll();
+
+            Mapper.Initialize(cfg => cfg.CreateMap<ProductDto, ProductViewModel>());
+            var productsViewModel = Mapper.Map<IEnumerable<ProductDto>, IEnumerable<ProductViewModel>>(productsDto);
+            
+            return View(productsViewModel);
         }
 
         public ActionResult CreateProduct()
@@ -34,7 +40,7 @@ namespace InternetShop.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateProduct([Bind(Exclude = "Image")]Product product)
+        public ActionResult CreateProduct([Bind(Exclude = "Image")]ProductViewModel productViewModel)
         {
             byte[] imageData = null;
 
@@ -52,23 +58,30 @@ namespace InternetShop.Controllers
 
             if (imageData != null)
             {
-                product.Image = imageData;
+                productViewModel.Image = imageData;
             }
-            _productService.Create(product);
+
+            Mapper.Initialize(cfg => cfg.CreateMap<ProductViewModel, ProductDto>());
+            var productDto = Mapper.Map<ProductViewModel, ProductDto>(productViewModel);
+
+            _productService.Create(productDto);
             ViewBag.Categories = _categoryService.GetAllCategories();
-            return View(product);
+            return View(productViewModel);
         }
 
         public FileContentResult ProductImage(int id)
         {
-            var product = _productService.GetById(id);
-            return new FileContentResult(product.Image, "image / jpeg");
+            var productDto = _productService.GetById(id);
+            return new FileContentResult(productDto.Image, "image / jpeg");
         }
 
         public ActionResult Search(string searchString)
         {
-            var products = _productService.Search(searchString);
-            return View("GetProducts", products);
+            var productsDto = _productService.Search(searchString);
+
+            Mapper.Initialize(cfg => cfg.CreateMap<ProductDto, ProductViewModel>());
+            var productsViewModel = Mapper.Map<IEnumerable<ProductDto>, IEnumerable<ProductViewModel>>(productsDto);
+            return View("GetProducts", productsViewModel);
         }
 
         public ActionResult AutocompleteSearch(string searchString)
@@ -80,14 +93,22 @@ namespace InternetShop.Controllers
 
         public ActionResult SortProduct(string sortOrder)
         {
-            var products = _productService.Sort(sortOrder);
-            return PartialView("GetProducts", products);
+            var productsDto = _productService.Sort(sortOrder);
+
+            Mapper.Initialize(cfg => cfg.CreateMap<ProductDto, ProductViewModel>());
+            var productsViewModel = Mapper.Map<IEnumerable<ProductDto>, IEnumerable<ProductViewModel>>(productsDto);
+
+            return PartialView("GetProducts", productsViewModel);
         }
 
         public ActionResult GetProductsByCategory(int categoryId = 0)
         {
-            var products = _productService.GetProductsByCategory(categoryId);
-            return PartialView("GetProducts", products.ToList());
+            var productsDto = _productService.GetProductsByCategory(categoryId);
+
+            Mapper.Initialize(cfg => cfg.CreateMap<ProductDto, ProductViewModel>());
+            var productsViewModel = Mapper.Map<IEnumerable<ProductDto>, IEnumerable<ProductViewModel>>(productsDto);
+
+            return PartialView("GetProducts", productsViewModel.ToList());
         }
 
         [Authorize(Roles = "admin")]
@@ -109,15 +130,17 @@ namespace InternetShop.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Product product)
+        public ActionResult Edit(ProductViewModel productViewModel)
         {
             if (ModelState.IsValid)
             {
-                _productService.Update(product.Id, product);
+                Mapper.Initialize(cfg => cfg.CreateMap<ProductViewModel, ProductDto>());
+                var productDto = Mapper.Map<ProductViewModel, ProductDto>(productViewModel);
+                _productService.Update(productViewModel.Id, productDto);
                 return RedirectToAction("GetAllProductsAdmin", "Admin");
             }
 
-            return View(product);
+            return View(productViewModel);
         }
 
     }

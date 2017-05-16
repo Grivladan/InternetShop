@@ -4,6 +4,8 @@ using DataAccess.Entities;
 using LogicLayer.Interfaces;
 using DataAccess.Interfaces;
 using System.Linq;
+using AutoMapper;
+using LogicLayer.DTO;
 
 namespace LogicLayer.Services
 {
@@ -15,8 +17,10 @@ namespace LogicLayer.Services
             _unitOfWork = unitOfWork;
         }
 
-        public void Create(Product product)
+        public void Create(ProductDto productDto)
         {
+            Mapper.Initialize(cfg => cfg.CreateMap<ProductDto, Product>());
+            var product = Mapper.Map<ProductDto, Product>(productDto);
             if (product.Category == null)
                 product.Category = _unitOfWork.Categories.GetById(product.CategoryId??0);
             _unitOfWork.Products.Create(product);
@@ -28,16 +32,18 @@ namespace LogicLayer.Services
             _unitOfWork.Dispose();
         }
 
-        public IEnumerable<Product> GetAll()
+        public IEnumerable<ProductDto> GetAll()
         {
+            Mapper.Initialize(cfg => cfg.CreateMap<Product, ProductDto>());
             var products = _unitOfWork.Products.GetAll();
-            return products;
+            return Mapper.Map<IEnumerable<Product>, IEnumerable<ProductDto>>(products);
         }
 
-        public Product GetById(int id)
+        public ProductDto GetById(int id)
         {
+            Mapper.Initialize(cfg => cfg.CreateMap<Product, ProductDto>());
             var product = _unitOfWork.Products.GetById(id);
-            return product;
+            return Mapper.Map<Product, ProductDto>(product);
         }
 
         public void Remove(int id)
@@ -46,19 +52,22 @@ namespace LogicLayer.Services
             _unitOfWork.Save();
         }
 
-        public void Update(int id, Product product)
+        public void Update(int id, ProductDto productDto)
         {
+            Mapper.Initialize(cfg => cfg.CreateMap<ProductDto, Product>());
+            var product = Mapper.Map<ProductDto, Product>(productDto);
             _unitOfWork.Products.Update(product);
             _unitOfWork.Save();
         }
 
-        public IEnumerable<Product> GetProductsByCategory(int categoryId)
+        public IEnumerable<ProductDto> GetProductsByCategory(int categoryId)
         {
+            Mapper.Initialize(cfg => cfg.CreateMap<Product, ProductDto>());
             var products = _unitOfWork.Products.Query.Where(x => x.Category.Id == categoryId);
-            return products;
+            return Mapper.Map<IEnumerable<Product>, IEnumerable<ProductDto>>(products); 
         }
 
-        public IEnumerable<Product> Sort(string sortOrder)
+        public IEnumerable<ProductDto> Sort(string sortOrder)
         {
             var products = _unitOfWork.Products.GetAll();
             switch (sortOrder)
@@ -85,10 +94,12 @@ namespace LogicLayer.Services
                     products = products.OrderByDescending(x => x.Date);
                     break;
             }
-            return products;
+
+            Mapper.Initialize(cfg => cfg.CreateMap<Product, ProductDto>());
+            return Mapper.Map<IEnumerable<Product>, IEnumerable<ProductDto>>(products);
         }
 
-        public IEnumerable<Product> Search(string searchString)
+        public IEnumerable<ProductDto> Search(string searchString)
         {
             var products = _unitOfWork.Products.GetAll();
 
@@ -97,7 +108,8 @@ namespace LogicLayer.Services
                 products = products.Where(x => x.Name.Contains(searchString)).ToList();
             }
 
-            return products;
+            Mapper.Initialize(cfg => cfg.CreateMap<Product, ProductDto>());
+            return Mapper.Map<IEnumerable<Product>, IEnumerable<ProductDto>>(products);
         }
     }
 }

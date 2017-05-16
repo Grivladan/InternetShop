@@ -1,18 +1,18 @@
-﻿using DataAccess.Entities;
+﻿using LogicLayer.DTO;
 using System.Collections.Generic;
 
 namespace LogicLayer.Interfaces
 {
     public interface IProductService
     {
-        IEnumerable<Product> GetAll();
-        Product GetById(int id);
-        void Create(Product product);
-        void Update(int id, Product product);
+        IEnumerable<ProductDto> GetAll();
+        ProductDto GetById(int id);
+        void Create(ProductDto productDto);
+        void Update(int id, ProductDto productDto);
         void Remove(int id);
-        IEnumerable<Product> Search(string searchString);
-        IEnumerable<Product> Sort(string sortOrder);
-        IEnumerable<Product> GetProductsByCategory(int categoryId);
+        IEnumerable<ProductDto> Search(string searchString);
+        IEnumerable<ProductDto> Sort(string sortOrder);
+        IEnumerable<ProductDto> GetProductsByCategory(int categoryId);
 
         void Dispose();
     }

@@ -14,7 +14,7 @@
             <li>
                 <span class="item">
                     <span class="item-left">
-                        <img src="@Url.Action("ProductImage", "Product", new { id = item.Id })" alt="" id="product-image" />
+                        <img src="@Url.Action("ProductImage", "Product", new { id = item.Product.Id })" alt="" id="product-image" />
                         <span class="item-info">
                             <span>@item.Product.Name</span>
                             <span>@item.Product.Price$</span>

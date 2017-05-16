@@ -1,4 +1,6 @@
-﻿using InternetShop.DataAccess.Entities;
+﻿using AutoMapper;
+using InternetShop.ViewModels;
+using LogicLayer.DTO;
 using LogicLayer.Interfaces;
 using Microsoft.AspNet.Identity;
 using System;
@@ -23,8 +25,11 @@ namespace InternetShop.Controllers
 
         public ActionResult GetAllProductsAdmin()
         {
-            var products = _productService.GetAll();
-            return View(products);
+            var productsDto = _productService.GetAll();
+
+            Mapper.Initialize(cfg => cfg.CreateMap<LogicLayer.DTO.ProductDto, ProductViewModel>());
+            var productsViewModel = Mapper.Map<IEnumerable<ProductDto>, IEnumerable<ProductViewModel>>(productsDto);
+            return View(productsViewModel);
         }
 
         public ActionResult GetAllUsers()
