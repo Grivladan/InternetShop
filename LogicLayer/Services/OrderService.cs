@@ -62,7 +62,7 @@ namespace LogicLayer.Services
         public IEnumerable<OrderDto> GetUserOrders(string userId)
         {
             Mapper.Initialize(cfg => cfg.CreateMap<Order, OrderDto>());
-            var orders = _unitOfWork.Orders.Query.Where(x => x.OwnerId == userId);
+            var orders = _unitOfWork.Orders.Query.Where(x => x.OwnerId == userId).ToList();
             return Mapper.Map<IEnumerable<Order>, IEnumerable<OrderDto>>(orders);
         }
     }

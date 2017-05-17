@@ -6,7 +6,7 @@
             <tr>
                 <th>@Html.DisplayNameFor(model => model.Id)</th>
                 <th>@Html.DisplayNameFor(model => model.FirstName)</th>
-                <th>@Html.DisplayNameFor(model => model.SecondName)</th>
+                <th>@Html.DisplayNameFor(model => model.LastName)</th>
                 <th>@Html.DisplayNameFor(model => model.Date)</th>
                 <th>@Html.DisplayNameFor(model => model.OrderStatus)</th>
                 <th>@Html.DisplayNameFor(model => model.Total)</th>
@@ -19,7 +19,7 @@
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.Id)</td>
                 <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
-                <td>@Html.DisplayFor(modelItem => item.SecondName)</td>
+                <td>@Html.DisplayFor(modelItem => item.LastName)</td>
                 <td>@Html.DisplayFor(modelItem => item.Date)</td>
                 <td>
                     @using (Html.BeginForm("ChangeStatus", "Order"))

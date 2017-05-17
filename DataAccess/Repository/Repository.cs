@@ -56,6 +56,5 @@ namespace DataAccess.Repository
         {
             get { return Entities; }
         }
-
     }
 }

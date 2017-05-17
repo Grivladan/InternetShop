@@ -14,12 +14,6 @@ namespace InternetShop.Controllers
             return View();
         }
 
-        public ActionResult Forbidden()
-        {
-            Response.StatusCode = 403;
-            return View();
-        }
-
         public ActionResult ServerError()
         {
             Response.StatusCode = 500;

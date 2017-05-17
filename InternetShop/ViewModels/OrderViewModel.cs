@@ -40,7 +40,7 @@ namespace InternetShop.ViewModels
 
         [Required(ErrorMessage = "Phone number is required")]
         [DataType(DataType.PhoneNumber)]
-        [RegularExpression(@"/^[0-9()-]+$/", ErrorMessage = "Entered phone format is not valid.")]
+        [RegularExpression(@"^[0-9()-]+$", ErrorMessage = "Entered phone format is not valid.")]
         public string Phone { get; set; }
 
         public DateTime? Date { get; set; }
