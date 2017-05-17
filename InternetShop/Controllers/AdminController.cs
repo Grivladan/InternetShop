@@ -15,26 +15,15 @@ namespace InternetShop.Controllers
     [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
-        readonly private IProductService _productService;
         readonly private IUserService _userService;
-        public AdminController(IProductService productService, IUserService userService)
+        public AdminController(IUserService userService)
         {
-            _productService = productService;
             _userService = userService;
-        }
-
-        public ActionResult GetAllProductsAdmin()
-        {
-            var productsDto = _productService.GetAll();
-
-            Mapper.Initialize(cfg => cfg.CreateMap<LogicLayer.DTO.ProductDto, ProductViewModel>());
-            var productsViewModel = Mapper.Map<IEnumerable<ProductDto>, IEnumerable<ProductViewModel>>(productsDto);
-            return View(productsViewModel);
         }
 
         public ActionResult GetAllUsers()
         {
-            var users = _userService.GetAll();
+            var users = _userService.GetAll().Where(x => x.IsEnabled == true);
             return View(users);
         }
 

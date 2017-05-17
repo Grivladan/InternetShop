@@ -372,7 +372,7 @@
     <Content Include="Views\Cart\GetCartItems.cshtml" />
     <Content Include="Views\Order\CreateOrder.cshtml" />
     <Content Include="Views\Order\GetAllOrders.cshtml" />
-    <Content Include="Views\Admin\GetAllProductsAdmin.cshtml" />
+    <Content Include="Views\Product\GetAllProductsAdmin.cshtml" />
     <Content Include="Views\Admin\GetAllUsers.cshtml" />
     <Content Include="Views\Cart\GetDropDownCartItems.cshtml" />
     <Content Include="Views\Slider\GetSliderImages.cshtml" />
@@ -403,6 +403,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\" />
+    <Folder Include="Content\UtilImages\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

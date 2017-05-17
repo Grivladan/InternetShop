@@ -58,16 +58,28 @@ namespace InternetShop.Controllers
                     }
                 }
 
-                if (imageData != null)
+                if (imageData == null)
                 {
-                    productViewModel.Image = imageData;
+                    string fileName = HttpContext.Server.MapPath(@"~/Content/UtilImages/No_Image.png");
+
+                    FileInfo fileInfo = new FileInfo(fileName);
+                    long imageFileLength = fileInfo.Length;
+                    using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+                    {
+                        using (BinaryReader br = new BinaryReader(fs))
+                        {
+                            imageData = br.ReadBytes((int)imageFileLength);
+                        }
+                    }
                 }
+
+                productViewModel.Image = imageData;
 
                 Mapper.Initialize(cfg => cfg.CreateMap<ProductViewModel, ProductDto>());
                 var productDto = Mapper.Map<ProductViewModel, ProductDto>(productViewModel);
 
                 _productService.Create(productDto);
-                return RedirectToAction("GetAllProductsAdmin", "Admin");
+                return RedirectToAction("GetAllProductsAdmin", "Product");
             }
             ViewBag.Categories = _categoryService.GetAllCategories();
             return View(productViewModel);
@@ -112,34 +124,16 @@ namespace InternetShop.Controllers
         public ActionResult Delete(int id)
         {
             _productService.Remove(id);
-            return RedirectToAction("GetAllProductsAdmin", "Admin");
+            return RedirectToAction("GetAllProductsAdmin", "Product");
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult GetAllProductsAdmin()
         {
-            var productDto = _productService.GetById(id);
+            var productsDto = _productService.GetAll();
 
             Mapper.Initialize(cfg => cfg.CreateMap<ProductDto, ProductViewModel>());
-            var productViewModel = Mapper.Map<ProductDto, ProductViewModel>(productDto);
-
-            ViewBag.Categories = _categoryService.GetAllCategories();
-            return View(productViewModel);
-        }
-
-        [HttpPost]
-        public ActionResult Edit(ProductViewModel productViewModel)
-        {
-            if (ModelState.IsValid)
-            { 
-                Mapper.Initialize(cfg => cfg.CreateMap<ProductViewModel, ProductDto>());
-                var productDto = Mapper.Map<ProductViewModel, ProductDto>(productViewModel);
-
-                _productService.Update(productDto.Id, productDto);
-                return RedirectToAction("GetAllProductsAdmin", "Admin");
-            }
-
-            ViewBag.Categories = _categoryService.GetAllCategories();
-            return View(productViewModel);
+            var productsViewModel = Mapper.Map<IEnumerable<ProductDto>, IEnumerable<ProductViewModel>>(productsDto);
+            return View(productsViewModel);
         }
 
     }
