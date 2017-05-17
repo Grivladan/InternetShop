@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using InternetShop.ViewModels;
 using LogicLayer.DTO;
+using LogicLayer.Infrastructure;
 using LogicLayer.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -88,8 +89,8 @@ namespace InternetShop.Controllers
 
         public FileContentResult ProductImage(int id)
         {
-            var productDto = _productService.GetById(id);
-            return new FileContentResult(productDto.Image, "image / jpeg");
+                var productDto = _productService.GetById(id);
+                return new FileContentResult(productDto.Image, "image / jpeg");
         }
 
         public ActionResult Search(string searchString)
@@ -124,8 +125,15 @@ namespace InternetShop.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
-            _productService.Remove(id);
-            return RedirectToAction("GetAllProductsAdmin", "Product");
+            try
+            {
+                _productService.Remove(id);
+                return RedirectToAction("GetAllProductsAdmin", "Product");
+            }
+            catch(ValidationException ex)
+            {
+                return Content(ex.Message);
+            }
         }
 
         [Authorize(Roles = "admin")]

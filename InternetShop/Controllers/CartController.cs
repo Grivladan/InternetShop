@@ -1,4 +1,5 @@
-﻿using LogicLayer.Interfaces;
+﻿using LogicLayer.Infrastructure;
+using LogicLayer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,15 @@ namespace InternetShop.Controllers
 
         public ActionResult AddToCart(int id)
         {
-            _cartService.AddToCart(id);
-            return RedirectToAction("Index","Home");
+            try
+            {
+                _cartService.AddToCart(id);
+                return RedirectToAction("Index", "Home");
+            }
+            catch(ValidationException Ex)
+            {
+                return Content(Ex.Message);
+            }
         }
 
         public ActionResult GetCartItems()
@@ -35,8 +43,15 @@ namespace InternetShop.Controllers
 
         public ActionResult RemoveFromCart(int id)
         {
-            _cartService.RemoveFromCart(id);
-            return RedirectToAction("GetCartItems");
+            try
+            {
+                _cartService.RemoveFromCart(id);
+                return RedirectToAction("GetCartItems");
+            }
+            catch (ValidationException Ex)
+            {
+                return Content(Ex.Message);
+            }
         }
 
         public ActionResult GetCartCount()

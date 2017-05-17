@@ -57,6 +57,7 @@
     <Compile Include="DTO\OrderDto.cs" />
     <Compile Include="DTO\ProductDto.cs" />
     <Compile Include="Infrastructure\LogicModule.cs" />
+    <Compile Include="Infrastructure\ValidationException.cs" />
     <Compile Include="Interfaces\ICategoryService.cs" />
     <Compile Include="Interfaces\IOrderService.cs" />
     <Compile Include="Interfaces\IProductService.cs" />

@@ -2,6 +2,7 @@
 using DataAccess.Entities;
 using InternetShop.ViewModels;
 using LogicLayer.DTO;
+using LogicLayer.Infrastructure;
 using LogicLayer.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -47,8 +48,15 @@ namespace InternetShop.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
-            _categoryService.Delete(id);
-            return RedirectToAction("GetAllCategoriesAdmin", "Category");
+            try
+            {
+                _categoryService.Delete(id);
+                return RedirectToAction("GetAllCategoriesAdmin", "Category");
+            }
+            catch (ValidationException ex)
+            {
+                return Content(ex.Message);
+            }
         }
 
         [HttpPost]
@@ -66,10 +74,17 @@ namespace InternetShop.Controllers
 
         public ActionResult Edit(int id)
         {
-            var categoryDto = _categoryService.GetCategoryById(id);
-            Mapper.Initialize(cfg => cfg.CreateMap<CategoryDto, CategoryViewModel>());
-            var categoryViewModel = Mapper.Map<CategoryDto, CategoryViewModel>(categoryDto);
-            return View(categoryViewModel);
+            try
+            {
+                var categoryDto = _categoryService.GetCategoryById(id);
+                Mapper.Initialize(cfg => cfg.CreateMap<CategoryDto, CategoryViewModel>());
+                var categoryViewModel = Mapper.Map<CategoryDto, CategoryViewModel>(categoryDto);
+                return View(categoryViewModel);
+            }
+            catch (ValidationException ex)
+            {
+                return Content(ex.Message);
+            }
         }
 
         [HttpPost]

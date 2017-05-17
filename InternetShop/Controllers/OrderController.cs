@@ -56,18 +56,32 @@ namespace InternetShop.Controllers
 
         public ActionResult GetOrderById(int id)
         {
-            var orderDto = _orderService.GetById(id);
+            try
+            {
+                var orderDto = _orderService.GetById(id);
 
-            Mapper.Initialize(cfg => cfg.CreateMap<OrderDto, OrderViewModel>());
-            var orderViewModel = Mapper.Map<OrderDto, OrderViewModel>(orderDto);
-            return View(orderViewModel);
+                Mapper.Initialize(cfg => cfg.CreateMap<OrderDto, OrderViewModel>());
+                var orderViewModel = Mapper.Map<OrderDto, OrderViewModel>(orderDto);
+                return View(orderViewModel);
+            }
+            catch(Exception ex)
+            {
+                return Content(ex.Message);
+            }
         }
 
         [Authorize(Roles = "admin")]
         public ActionResult ChangeStatus(int id, OrderStatus orderStatus)
         {
-            _orderService.ChangeStatus(id, orderStatus);
-            return RedirectToAction("GetAllOrders", "Order");
+            try
+            {
+                _orderService.ChangeStatus(id, orderStatus);
+                return RedirectToAction("GetAllOrders", "Order");
+            }
+            catch(Exception ex)
+            {
+                return Content(ex.Message);
+            }
         }
 
         [Authorize(Roles = "user")]
