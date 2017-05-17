@@ -7,7 +7,7 @@ namespace LogicLayer.Interfaces
     {
         CategoryDto GetCategoryById(int id);
         void Create(CategoryDto category);
-        void Update(int id, CategoryDto category);
+        void Update(CategoryDto category);
         void Delete(int id);
         IEnumerable<CategoryDto> GetAllCategories();
 

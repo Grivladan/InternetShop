@@ -43,16 +43,21 @@ namespace LogicLayer.Services
         {
             Mapper.Initialize(cfg => cfg.CreateMap<Product, ProductDto>());
             var product = _unitOfWork.Products.GetById(id);
+            if (product == null)
+                throw new Exception();
             return Mapper.Map<Product, ProductDto>(product);
         }
 
         public void Remove(int id)
         {
-            _unitOfWork.Products.Delete(id);
+            var product = _unitOfWork.Products.GetById(id);
+            if (product == null)
+                throw new Exception();
+            _unitOfWork.Products.Delete(product);
             _unitOfWork.Save();
         }
 
-        public void Update(int id, ProductDto productDto)
+        public void Update(ProductDto productDto)
         {
             Mapper.Initialize(cfg => cfg.CreateMap<ProductDto, Product>());
             var product = Mapper.Map<ProductDto, Product>(productDto);

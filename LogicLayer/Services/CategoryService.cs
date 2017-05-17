@@ -36,7 +36,7 @@ namespace LogicLayer.Services
             return Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryDto>>(categories);
         }
 
-        public void Update(int id, CategoryDto categoryDto)
+        public void Update(CategoryDto categoryDto)
         {
             Mapper.Initialize(cfg => cfg.CreateMap<CategoryDto, Category>());
             var category = Mapper.Map<CategoryDto, Category>(categoryDto);
@@ -47,13 +47,18 @@ namespace LogicLayer.Services
         public CategoryDto GetCategoryById(int id)
         {
             var category = _unitOfWork.Categories.GetById(id);
+            if (category == null)
+                throw new Exception();
             Mapper.Initialize(cfg => cfg.CreateMap<Category, CategoryDto>());
             return Mapper.Map<Category, CategoryDto>(category);
         }
 
         public void Delete(int id)
         {
-            _unitOfWork.Categories.Delete(id);
+            var category = _unitOfWork.Categories.GetById(id);
+            if (category == null)
+                throw new Exception();
+            _unitOfWork.Categories.Delete(category);
             _unitOfWork.Save();
         }
     }

@@ -34,49 +34,17 @@ namespace DataAccess.Repository
 
         public void Create(T item)
         {
-            try
-            {
-                if (item == null)
-                    throw new ArgumentNullException("item");
-                Entities.Add(item);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            Entities.Add(item);
         }
 
         public void Update(T item)
         {
-            try
-            {
-                if (item == null)
-                {
-                    throw new ArgumentNullException("item");
-                }
-                _context.Entry(item).State = EntityState.Modified;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            _context.Entry(item).State = EntityState.Modified;
         }
 
-        public void Delete(int id)
+        public void Delete(T item)
         {
-            try
-            {
-                var entity = GetById(id);
-                if (entity == null)
-                {
-                    throw new ArgumentNullException("id");
-                }
-                Entities.Remove(entity);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            Entities.Remove(item);
         }
 
         protected IDbSet<T> Entities

@@ -79,7 +79,7 @@ namespace InternetShop.Controllers
             {
                 Mapper.Initialize(cfg => cfg.CreateMap<CategoryViewModel, CategoryDto>());
                 var categoryDto = Mapper.Map<CategoryViewModel, CategoryDto>(categoryViewModel);
-                _categoryService.Update(categoryViewModel.Id, categoryDto);
+                _categoryService.Update(categoryDto);
                 return RedirectToAction("GetAllCategoriesAdmin", "Category");
             }
             return View(categoryViewModel);

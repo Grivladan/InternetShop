@@ -28,6 +28,8 @@ namespace LogicLayer.Services
         public void AddToCart(int id)
         {
             var product = _unitOfWork.Products.GetById(id);
+            if (product == null)
+                throw new Exception();
             var cart = _unitOfWork.Carts.Query.SingleOrDefault( x => x.SessionId == sessionId && x.Product.Id == product.Id);
             if(cart == null)
             {
@@ -50,7 +52,10 @@ namespace LogicLayer.Services
 
         public void RemoveFromCart(int id)
         {
-            _unitOfWork.Carts.Delete(id);
+            var cart = _unitOfWork.Carts.GetById(id);
+            if (cart == null)
+                throw new Exception();
+            _unitOfWork.Carts.Delete(cart);
             _unitOfWork.Save();
         }
 
@@ -73,9 +78,9 @@ namespace LogicLayer.Services
 
         public void RemoveAll()
         {
-            var cartsId = _unitOfWork.Carts.Query.Select(x => x.Id).ToList();
-            foreach (var id in cartsId)
-                _unitOfWork.Carts.Delete(id);
+            var carts = _unitOfWork.Carts.GetAll().ToList();
+            foreach (var cart in carts)
+                _unitOfWork.Carts.Delete(cart);
             _unitOfWork.Save();
         }
 
@@ -132,7 +137,7 @@ namespace LogicLayer.Services
                 }
                 else
                 {
-                    _unitOfWork.Carts.Delete(id);
+                    _unitOfWork.Carts.Delete(cartItem);
                 }
                 // Save changes 
                 _unitOfWork.Save();
