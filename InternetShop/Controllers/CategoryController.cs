@@ -28,6 +28,7 @@ namespace InternetShop.Controllers
             return View(categoriesViewModel); 
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult GetAllCategoriesAdmin()
         {
             var categoriesDto = _categoryService.GetAllCategories();
@@ -37,11 +38,13 @@ namespace InternetShop.Controllers
             return View(categoriesViewModel);
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult CreateCategory()
         {
             return View();
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
             _categoryService.Delete(id);

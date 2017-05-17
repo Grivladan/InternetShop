@@ -39,42 +39,45 @@
                          <span class="glyphicon glyphicon-shopping-cart"> </span> <span id="cartItemsCounter" hidden>0</span><span class="caret"></span></a>
                         @{Html.RenderAction("GetDropDownCartItems", "Cart");}
                     </li>
-                    <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Admin <b class="caret"></b></a>
-                        <div class="dropdown-menu well sidebar-nav" id="sidebar">
-                            <h5>
-                                <i class="glyphicon glyphicon-hdd"></i>
-                                <small><b>Products</b></small>
-                            </h5>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="/Product/GetAllProductsAdmin">List</a></li>
-                                <li><a href="/Product/CreateProduct">Add product</a></li>
-                            </ul>
-                            <h5>
-                                <i class="glyphicon glyphicon-user"></i>
-                                <small><b>USERS</b></small>
-                            </h5>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="/Admin/GetAllUsers">List</a></li>
-                                <li><a href="/Admin/GetBlackList">Blacklist</a></li>
-                            </ul>
-                            <h5>
-                                <i class="glyphicon glyphicon-list-alt"></i>
-                                <small><b>ORDERS</b></small>
-                            </h5>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="/Order/GetAllOrders">List</a></li>
-                            </ul>
-                            <h5>
-                                <i class="glyphicon glyphicon-list"></i>
-                                <small><b>Categories</b></small>
-                            </h5>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="/Category/GetAllCategoriesAdmin">List</a></li>
-                                <li><a href="/Category/CreateCategory">Add category</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                    @if (this.User.IsInRole("admin"))
+                    {
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Admin <b class="caret"></b></a>
+                            <div class="dropdown-menu well sidebar-nav" id="sidebar">
+                                <h5>
+                                    <i class="glyphicon glyphicon-hdd"></i>
+                                    <small><b>Products</b></small>
+                                </h5>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="/Product/GetAllProductsAdmin">List</a></li>
+                                    <li><a href="/Product/CreateProduct">Add product</a></li>
+                                </ul>
+                                <h5>
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    <small><b>USERS</b></small>
+                                </h5>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="/Admin/GetAllUsers">List</a></li>
+                                    <li><a href="/Admin/GetBlackList">Blacklist</a></li>
+                                </ul>
+                                <h5>
+                                    <i class="glyphicon glyphicon-list-alt"></i>
+                                    <small><b>ORDERS</b></small>
+                                </h5>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="/Order/GetAllOrders">List</a></li>
+                                </ul>
+                                <h5>
+                                    <i class="glyphicon glyphicon-list"></i>
+                                    <small><b>Categories</b></small>
+                                </h5>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="/Category/GetAllCategoriesAdmin">List</a></li>
+                                    <li><a href="/Category/CreateCategory">Add category</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    }
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>

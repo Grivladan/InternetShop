@@ -33,6 +33,7 @@ namespace InternetShop.Controllers
             return View(productsViewModel);
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult CreateProduct()
         {
             ViewBag.Categories = _categoryService.GetAllCategories();
@@ -127,6 +128,7 @@ namespace InternetShop.Controllers
             return RedirectToAction("GetAllProductsAdmin", "Product");
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult GetAllProductsAdmin()
         {
             var productsDto = _productService.GetAll();

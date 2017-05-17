@@ -23,6 +23,7 @@ namespace InternetShop.Controllers
             _cartService = cartService;
         }
 
+        [Authorize(Roles = "user")]
         public ActionResult CreateOrder()
         {
             return View();
@@ -43,6 +44,7 @@ namespace InternetShop.Controllers
             return View(orderViewModel);
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult GetAllOrders()
         {
             var ordersDto = _orderService.GetAll();
@@ -61,12 +63,14 @@ namespace InternetShop.Controllers
             return View(orderViewModel);
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult ChangeStatus(int id, OrderStatus orderStatus)
         {
             _orderService.ChangeStatus(id, orderStatus);
             return RedirectToAction("GetAllOrders", "Order");
         }
 
+        [Authorize(Roles = "user")]
         public ActionResult GetUserOrders()
         {
             string userId = User.Identity.GetUserId();
