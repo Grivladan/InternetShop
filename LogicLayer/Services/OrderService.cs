@@ -7,6 +7,7 @@ using System.Web;
 using LogicLayer.DTO;
 using AutoMapper;
 using System;
+using LogicLayer.Infrastructure;
 
 namespace LogicLayer.Services
 {
@@ -35,7 +36,7 @@ namespace LogicLayer.Services
             Mapper.Initialize(cfg => cfg.CreateMap<Order, OrderDto>());
             var order = _unitOfWork.Orders.GetById(id);
             if (order == null)
-                throw new System.Exception();
+                throw new ValidationException("Order doesn't exist", "");
             return Mapper.Map<Order, OrderDto>(order);
         }
 
@@ -52,7 +53,7 @@ namespace LogicLayer.Services
         {
             var order = _unitOfWork.Orders.GetById(id);
             if (order == null)
-                throw new Exception();
+                throw new ValidationException("Order doesn't exist", "");
             order.OrderStatus = orderStatus;
             _unitOfWork.Orders.Update(order);
             _unitOfWork.Save();

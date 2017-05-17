@@ -7,6 +7,7 @@ using System.Web;
 using System.Linq;
 using AutoMapper;
 using LogicLayer.DTO;
+using LogicLayer.Infrastructure;
 
 namespace LogicLayer.Services
 {
@@ -29,7 +30,7 @@ namespace LogicLayer.Services
         {
             var product = _unitOfWork.Products.GetById(id);
             if (product == null)
-                throw new Exception();
+                throw new ValidationException("Product doesn't exist", "");
             var cart = _unitOfWork.Carts.Query.SingleOrDefault( x => x.SessionId == sessionId && x.Product.Id == product.Id);
             if(cart == null)
             {
@@ -54,7 +55,7 @@ namespace LogicLayer.Services
         {
             var cart = _unitOfWork.Carts.GetById(id);
             if (cart == null)
-                throw new Exception();
+                throw new ValidationException("Cart doesn't exist", "");
             _unitOfWork.Carts.Delete(cart);
             _unitOfWork.Save();
         }

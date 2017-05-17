@@ -6,6 +6,7 @@ using DataAccess.Interfaces;
 using System.Linq;
 using AutoMapper;
 using LogicLayer.DTO;
+using LogicLayer.Infrastructure;
 
 namespace LogicLayer.Services
 {
@@ -44,7 +45,7 @@ namespace LogicLayer.Services
             Mapper.Initialize(cfg => cfg.CreateMap<Product, ProductDto>());
             var product = _unitOfWork.Products.GetById(id);
             if (product == null)
-                throw new Exception();
+                throw new ValidationException("Product doesn't exist", "");
             return Mapper.Map<Product, ProductDto>(product);
         }
 
@@ -52,7 +53,7 @@ namespace LogicLayer.Services
         {
             var product = _unitOfWork.Products.GetById(id);
             if (product == null)
-                throw new Exception();
+                throw new ValidationException("Product doesn't exist", "");
             _unitOfWork.Products.Delete(product);
             _unitOfWork.Save();
         }

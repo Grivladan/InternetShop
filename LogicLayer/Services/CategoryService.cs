@@ -5,6 +5,7 @@ using LogicLayer.Interfaces;
 using DataAccess.Interfaces;
 using LogicLayer.DTO;
 using AutoMapper;
+using LogicLayer.Infrastructure;
 
 namespace LogicLayer.Services
 {
@@ -48,7 +49,7 @@ namespace LogicLayer.Services
         {
             var category = _unitOfWork.Categories.GetById(id);
             if (category == null)
-                throw new Exception();
+                throw new ValidationException("Category doesn't exist", "");
             Mapper.Initialize(cfg => cfg.CreateMap<Category, CategoryDto>());
             return Mapper.Map<Category, CategoryDto>(category);
         }
@@ -57,7 +58,7 @@ namespace LogicLayer.Services
         {
             var category = _unitOfWork.Categories.GetById(id);
             if (category == null)
-                throw new Exception();
+                throw new ValidationException("Category doesn't exist", "");
             _unitOfWork.Categories.Delete(category);
             _unitOfWork.Save();
         }
