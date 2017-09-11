@@ -13,6 +13,7 @@ namespace InternetShop.App_Start
     using Infrastructure;
     using global::DataAccess.Infrastucture;
     using LogicLayer.Infrastructure;
+    using AutoMapper;
 
     public static class NinjectWebCommon 
     {
@@ -47,7 +48,7 @@ namespace InternetShop.App_Start
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
-
+         
                 RegisterServices(kernel);
                 return kernel;
             }

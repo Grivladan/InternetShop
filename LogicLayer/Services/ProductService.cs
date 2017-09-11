@@ -20,6 +20,8 @@ namespace LogicLayer.Services
 
         public void Create(ProductDto productDto)
         {
+            if (productDto == null)
+                throw new ArgumentNullException("Product can`t be null");
             Mapper.Initialize(cfg => cfg.CreateMap<ProductDto, Product>());
             var product = Mapper.Map<ProductDto, Product>(productDto);
             if (product.Category == null)
@@ -60,16 +62,21 @@ namespace LogicLayer.Services
 
         public void Update(ProductDto productDto)
         {
+            if (productDto == null)
+                throw new ArgumentNullException("Product can`t be null");
+            var product = _unitOfWork.Products.GetById(productDto.Id);
+            if (product == null)
+                throw new ValidationException("Product doesn`t exist", "");
             Mapper.Initialize(cfg => cfg.CreateMap<ProductDto, Product>());
-            var product = Mapper.Map<ProductDto, Product>(productDto);
-            _unitOfWork.Products.Update(product);
+            var newProduct = Mapper.Map<ProductDto, Product>(productDto);
+            _unitOfWork.Products.Update(newProduct);
             _unitOfWork.Save();
         }
 
         public IEnumerable<ProductDto> GetProductsByCategory(int categoryId)
         {
             Mapper.Initialize(cfg => cfg.CreateMap<Product, ProductDto>());
-            var products = _unitOfWork.Products.Query.Where(x => x.Category.Id == categoryId).ToList();
+            var products = _unitOfWork.Products.Query.Where(x => x.CategoryId == categoryId).ToList();
             return Mapper.Map<IEnumerable<Product>, IList<ProductDto>>(products); 
         }
 

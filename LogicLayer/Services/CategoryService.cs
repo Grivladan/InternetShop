@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DataAccess.Entities;
 using LogicLayer.Interfaces;
 using DataAccess.Interfaces;
@@ -40,8 +39,10 @@ namespace LogicLayer.Services
         public void Update(CategoryDto categoryDto)
         {
             Mapper.Initialize(cfg => cfg.CreateMap<CategoryDto, Category>());
-            var category = Mapper.Map<CategoryDto, Category>(categoryDto);
-            _unitOfWork.Categories.Update(category);
+            var category = _unitOfWork.Categories.GetById(categoryDto.Id);
+            if (category == null)
+                throw new ValidationException("Category with such id doesn`t exist", "");
+            _unitOfWork.Categories.Update(Mapper.Map<CategoryDto, Category>(categoryDto));
             _unitOfWork.Save();
         }
 

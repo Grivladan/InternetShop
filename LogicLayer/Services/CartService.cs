@@ -140,7 +140,6 @@ namespace LogicLayer.Services
                 {
                     _unitOfWork.Carts.Delete(cartItem);
                 }
-                // Save changes 
                 _unitOfWork.Save();
             }
             return itemCount;

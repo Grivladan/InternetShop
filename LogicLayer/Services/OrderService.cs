@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using AutoMapper;
 using DataAccess.Entities;
-using LogicLayer.Interfaces;
 using DataAccess.Interfaces;
-using System.Linq;
-using System.Web;
 using LogicLayer.DTO;
-using AutoMapper;
-using System;
 using LogicLayer.Infrastructure;
+using LogicLayer.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LogicLayer.Services
 {
@@ -49,7 +47,7 @@ namespace LogicLayer.Services
             _unitOfWork.Save();
         }
 
-        public void ChangeStatus(int id, OrderStatus orderStatus)
+        public Order ChangeStatus(int id, OrderStatus orderStatus)
         {
             var order = _unitOfWork.Orders.GetById(id);
             if (order == null)
@@ -57,6 +55,8 @@ namespace LogicLayer.Services
             order.OrderStatus = orderStatus;
             _unitOfWork.Orders.Update(order);
             _unitOfWork.Save();
+
+            return order;
         }
 
         public IEnumerable<OrderDto> GetUserOrders(string userId)

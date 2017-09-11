@@ -1,21 +1,20 @@
-﻿using LogicLayer.Interfaces;
-using System;
+﻿using DataAccess.Interfaces;
+using InternetShop.DataAccess.Entities;
+using LogicLayer.Interfaces;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using InternetShop.DataAccess.Entities;
-using DataAccess.Interfaces;
-using Microsoft.AspNet.Identity;
 
 namespace LogicLayer.Services
 {
     public class UserService : IUserService
     {
         private readonly IUnitOfWork _unitOfWork;
+      
         public UserService(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = unitOfWork; 
+            _unitOfWork = unitOfWork;
         }
 
         public void Dispose()
